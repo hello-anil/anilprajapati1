@@ -1,4 +1,4 @@
-#  Responsive Anil Portfolio 
+#  Responsive anil portfolio 
 
 - Responsive Personal Portfolio Website HTML CSS & JavaScript.
 - Contains animations when scrolling.
