@@ -103,61 +103,61 @@ const projectDetails = {
   portfolio: {
     tag: 'HTML | CSS | JavaScript',
     title: 'Personal Portfolio Website',
-    description: 'A static portfolio designed for fast hosting, clear content, dark mode, responsive navigation, project cards, and a hosted contact flow.',
+    description: 'A static portfolio designed for fast hosting, clear content, dark mode, responsive navigation, and project cards.',
     bullets: [
-      'Optimized first paint by removing unnecessary third-party animation loading.',
-      'Improved mobile layout, focus states, and image loading behavior.',
-      'Added SEO metadata and a richer project presentation structure.'
+      'Optimized first paint and image loading.',
+      'Improved mobile layout and focus states.',
+      'Added SEO metadata and concise project cards.'
     ]
   },
   business: {
     tag: 'Responsive UI',
     title: 'Business Website Concept',
-    description: 'A practical small-business website structure built around service discovery, trust signals, and a direct contact path.',
+    description: 'A small-business website structure built around services, trust, and contact.',
     bullets: [
-      'Service cards built for quick scanning.',
-      'Responsive grid structure for desktop and mobile.',
-      'Clear call-to-action placement for lead generation.'
+      'Quick-scanning service cards.',
+      'Responsive desktop and mobile grid.',
+      'Clear call-to-action placement.'
     ]
   },
   support: {
     tag: 'IT Workflow',
     title: 'Support Dashboard Concept',
-    description: 'A concept for organizing support tasks, diagnostics, and priority information in a compact interface.',
+    description: 'A compact concept for support tasks, diagnostics, and priorities.',
     bullets: [
-      'Focused on practical support workflow visibility.',
-      'Designed around status, priority, and task clarity.',
-      'Suitable direction for a future JavaScript dashboard project.'
+      'Support workflow visibility.',
+      'Status and priority clarity.',
+      'Ready to expand into a dashboard.'
     ]
   },
   security: {
     tag: 'Security Awareness',
     title: 'Cybersecurity Landing Page',
-    description: 'A layout idea for teaching basic security habits in a simple, readable format for everyday users.',
+    description: 'A simple layout for basic security habits.',
     bullets: [
-      'Highlights password safety and phishing awareness.',
-      'Uses direct plain-language content blocks.',
-      'Can be expanded into a security checklist or training page.'
+      'Password safety and phishing awareness.',
+      'Plain-language content blocks.',
+      'Expandable into a checklist.'
     ]
   },
   ui: {
     tag: 'UX/UI',
     title: 'Responsive UI Practice',
-    description: 'A design practice project focused on rhythm, spacing, readable typography, card layout, and consistent interaction states.',
+    description: 'A design practice project focused on spacing, type, cards, and interaction states.',
     bullets: [
-      'Responsive cards and image presentation.',
-      'Consistent button, hover, and focus styling.',
-      'Useful base for future portfolio case studies.'
+      'Responsive cards and images.',
+      'Consistent hover and focus styling.',
+      'Reusable case-study base.'
     ]
   },
   contact: {
     tag: 'Forms | UX',
     title: 'Contact Workflow',
-    description: 'An accessible form flow with semantic labels, required fields, spam-reduction fields, and a dedicated success page.',
+    description: 'An accessible form flow with semantic labels and an email fallback.',
     bullets: [
-      'Uses accessible hidden labels and live status messaging.',
-      'Builds a prefilled email draft without depending on a third-party form host.',
-      'Includes a visible direct email fallback for visitors.'
+      'Accessible labels and live status.',
+      'Prefilled email draft.',
+      'Visible direct email fallback.'
     ]
   }
 };
@@ -224,7 +224,7 @@ contactForm?.addEventListener('submit', (event) => {
   const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
 
   if (contactStatus) {
-    contactStatus.textContent = 'Opening your email app. If it does not open, use the direct email link above.';
+    contactStatus.textContent = 'Opening your email app. You can also use the direct email link.';
   }
 
   window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
