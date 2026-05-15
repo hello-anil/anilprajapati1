@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio of Anil Prajapati, web designer and IT professional.">
+    <meta name="theme-color" content="#3b6df6">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Anil Prajapati | Web Developer & IT Support Specialist">
+    <meta property="og:description" content="Portfolio of Anil Prajapati: responsive websites, IT support, network administration, and cybersecurity-focused work.">
+    <meta property="og:url" content="https://anilprajapati1.com.np/">
+    <meta property="og:image" content="https://anilprajapati1.com.np/assets/img/pro-re.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Anil Prajapati | Web Developer & IT Support Specialist">
+    <meta name="twitter:description" content="Responsive websites, IT support, network administration, and cybersecurity-focused work.">
+    <meta name="twitter:image" content="https://anilprajapati1.com.np/assets/img/pro-re.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,14 +48,16 @@
                 <ul class="nav__list">
                     <li class="nav__item"><a href="#home" class="nav__link active">Home</a></li>
                     <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+                    <li class="nav__item"><a href="#services" class="nav__link">Services</a></li>
                     <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
                     <li class="nav__item"><a href="#work" class="nav__link">Work</a></li>
+                    <li class="nav__item"><a href="#resume" class="nav__link">Resume</a></li>
                     <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
                 </ul>
             </div>
-            <div class="nav__toggle" id="nav-toggle">
+            <button class="nav__toggle" id="nav-toggle" type="button" aria-label="Open menu">
                 <i class='bx bx-menu'></i>
-            </div>
+            </button>
         </nav>
     </header>
 
@@ -53,11 +65,30 @@
         <!-- HOME -->
         <section class="home bd-grid" id="home">
             <div class="home__data">
-                <h1 class="home__title">Hi,<br>I am <span class="home__title-color">Anil</span><br>Web Designer</h1>
-                <a href="#contact" class="button">Contact</a>
+                <p class="home__eyebrow">Web Development • IT Support • Security Basics</p>
+                <h1 class="home__title">Hi,<br>I am <span class="home__title-color">Anil</span><br>Web Developer</h1>
+                <p class="home__description">I build responsive portfolio and business websites, solve technical support problems, and keep systems organized with a security-first mindset.</p>
+                <div class="home__actions">
+                    <a href="#contact" class="button">Contact</a>
+                    <a href="resume.html" class="button button--ghost">View Resume</a>
+                </div>
+                <dl class="home__stats" aria-label="Portfolio highlights">
+                    <div>
+                        <dt>6+</dt>
+                        <dd>Project layouts</dd>
+                    </div>
+                    <div>
+                        <dt>4</dt>
+                        <dd>Core skills</dd>
+                    </div>
+                    <div>
+                        <dt>24/7</dt>
+                        <dd>Learning mindset</dd>
+                    </div>
+                </dl>
             </div>
             <div class="home__social">
-                <a href="https://www.linkedin.com/" class="home__social-icon" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+                <a href="https://www.linkedin.com/" class="home__social-icon" aria-label="LinkedIn profile"><i class='bx bxl-linkedin'></i></a>
                 <a href="https://github.com/hello-anil" class="home__social-icon" aria-label="GitHub"><i class='bx bxl-github'></i></a>
                 <a href="https://www.instagram.com/anil_prz/" class="home__social-icon" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
             </div>
@@ -83,8 +114,35 @@
                 </div>
                 <div>
                     <h2 class="about__subtitle">I am Anil</h2>
-                    <p class="about__text">Welcome to my IT professional portfolio! I am a dedicated and skilled IT professional with a passion for solving complex technical challenges and driving innovation. With a solid foundation in software development, network administration, cybersecurity, I have successfully contributed to a range of projects that showcase my technical prowess and commitment to excellence.</p>
+                    <p class="about__text">I focus on practical web and IT work: clean responsive interfaces, reliable troubleshooting, network basics, and safer digital workflows. This portfolio brings those skills together through website layouts, UI practice, and support-focused project ideas.</p>
+                    <ul class="about__list">
+                        <li><i class='bx bx-check-circle'></i> Responsive websites that work across mobile and desktop</li>
+                        <li><i class='bx bx-check-circle'></i> IT support mindset for diagnosing issues clearly</li>
+                        <li><i class='bx bx-check-circle'></i> Cybersecurity awareness for safer user experiences</li>
+                    </ul>
                 </div>
+            </div>
+        </section>
+
+        <!-- SERVICES -->
+        <section class="services section" id="services">
+            <h2 class="section-title">Services</h2>
+            <div class="services__container bd-grid">
+                <article class="service__card">
+                    <i class='bx bx-code-alt service__icon'></i>
+                    <h3>Web Development</h3>
+                    <p>Responsive portfolio, business, and landing pages using HTML, CSS, JavaScript, and clean UI structure.</p>
+                </article>
+                <article class="service__card">
+                    <i class='bx bx-support service__icon'></i>
+                    <h3>IT Support</h3>
+                    <p>Troubleshooting, system setup, software configuration, and clear technical support for everyday users.</p>
+                </article>
+                <article class="service__card">
+                    <i class='bx bx-shield-quarter service__icon'></i>
+                    <h3>Security Basics</h3>
+                    <p>Password hygiene, safe browsing guidance, basic hardening, and awareness-focused improvements.</p>
+                </article>
             </div>
         </section>
 
@@ -136,12 +194,97 @@
         <section class="work section" id="work">
             <h2 class="section-title">Work</h2>
             <div class="work__container bd-grid">
-                <figure class="work__img"><img src="assets/img/work1.jpg" alt="Portfolio project preview 1" width="640" height="426" loading="lazy" decoding="async"></figure>
-                <figure class="work__img"><img src="assets/img/work2.jpg" alt="Portfolio project preview 2" width="640" height="426" loading="lazy" decoding="async"></figure>
-                <figure class="work__img"><img src="assets/img/work3.jpg" alt="Portfolio project preview 3" width="640" height="426" loading="lazy" decoding="async"></figure>
-                <figure class="work__img"><img src="assets/img/work4.jpg" alt="Portfolio project preview 4" width="640" height="426" loading="lazy" decoding="async"></figure>
-                <figure class="work__img"><img src="assets/img/work5.jpg" alt="Portfolio project preview 5" width="640" height="426" loading="lazy" decoding="async"></figure>
-                <figure class="work__img"><img src="assets/img/work6.jpg" alt="Portfolio project preview 6" width="640" height="426" loading="lazy" decoding="async"></figure>
+                <article class="work__card">
+                    <img src="assets/img/work1.jpg" alt="Personal portfolio website preview" width="640" height="426" loading="lazy" decoding="async">
+                    <div class="work__content">
+                        <p class="work__tag">HTML • CSS • JavaScript</p>
+                        <h3>Personal Portfolio Website</h3>
+                        <p>Responsive one-page portfolio with dark mode, contact form, and project showcase.</p>
+                        <button class="work__details" type="button" data-project="portfolio">Details</button>
+                    </div>
+                </article>
+                <article class="work__card">
+                    <img src="assets/img/work2.jpg" alt="Responsive business website concept preview" width="640" height="426" loading="lazy" decoding="async">
+                    <div class="work__content">
+                        <p class="work__tag">Responsive UI</p>
+                        <h3>Business Website Concept</h3>
+                        <p>Clean section layout for a small business site with service highlights and contact flow.</p>
+                        <button class="work__details" type="button" data-project="business">Details</button>
+                    </div>
+                </article>
+                <article class="work__card">
+                    <img src="assets/img/work3.jpg" alt="Development workspace preview" width="640" height="426" loading="lazy" decoding="async">
+                    <div class="work__content">
+                        <p class="work__tag">IT Workflow</p>
+                        <h3>Support Dashboard Concept</h3>
+                        <p>Information layout for tracking support tasks, priorities, and quick diagnostics.</p>
+                        <button class="work__details" type="button" data-project="support">Details</button>
+                    </div>
+                </article>
+                <article class="work__card">
+                    <img src="assets/img/work4.jpg" alt="Security website layout preview" width="640" height="426" loading="lazy" decoding="async">
+                    <div class="work__content">
+                        <p class="work__tag">Security Awareness</p>
+                        <h3>Cybersecurity Landing Page</h3>
+                        <p>Awareness-focused layout explaining safe passwords, updates, and phishing prevention.</p>
+                        <button class="work__details" type="button" data-project="security">Details</button>
+                    </div>
+                </article>
+                <article class="work__card">
+                    <img src="assets/img/work5.jpg" alt="Web design layout preview" width="640" height="426" loading="lazy" decoding="async">
+                    <div class="work__content">
+                        <p class="work__tag">UX/UI</p>
+                        <h3>Responsive UI Practice</h3>
+                        <p>Practice layout focused on spacing, typography, cards, and mobile-friendly presentation.</p>
+                        <button class="work__details" type="button" data-project="ui">Details</button>
+                    </div>
+                </article>
+                <article class="work__card">
+                    <img src="assets/img/work6.jpg" alt="Contact workflow preview" width="640" height="426" loading="lazy" decoding="async">
+                    <div class="work__content">
+                        <p class="work__tag">Forms • UX</p>
+                        <h3>Contact Workflow</h3>
+                        <p>Accessible form structure with required fields, clear focus states, and hosted submission.</p>
+                        <button class="work__details" type="button" data-project="contact">Details</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- RESUME -->
+        <section class="resume section" id="resume">
+            <h2 class="section-title">Resume</h2>
+            <div class="resume__container bd-grid">
+                <div class="resume__panel">
+                    <h3>Experience Focus</h3>
+                    <div class="timeline">
+                        <article class="timeline__item">
+                            <span>Current</span>
+                            <h4>Web Development Practice</h4>
+                            <p>Building responsive website layouts, improving UI polish, and publishing static sites through GitHub.</p>
+                        </article>
+                        <article class="timeline__item">
+                            <span>IT Foundation</span>
+                            <h4>Support & Administration</h4>
+                            <p>Working knowledge of troubleshooting, network administration basics, and system maintenance.</p>
+                        </article>
+                        <article class="timeline__item">
+                            <span>Security</span>
+                            <h4>Cybersecurity Awareness</h4>
+                            <p>Focused on safer account practices, risk awareness, and simple security improvements for users.</p>
+                        </article>
+                    </div>
+                </div>
+                <div class="resume__panel">
+                    <h3>Certifications & Learning</h3>
+                    <ul class="resume__list">
+                        <li><i class='bx bx-certification'></i> Web development fundamentals</li>
+                        <li><i class='bx bx-certification'></i> Network administration basics</li>
+                        <li><i class='bx bx-certification'></i> Cybersecurity awareness</li>
+                        <li><i class='bx bx-certification'></i> UI/UX design practice</li>
+                    </ul>
+                    <a href="resume.html" class="button resume__button">Open Full Resume</a>
+                </div>
             </div>
         </section>
 
@@ -150,6 +293,10 @@
             <h2 class="section-title">Contact</h2>
             <div class="contact__container bd-grid">
                 <form action="https://formsubmit.co/harry7anil@gmail.com" class="contact__form" method="post">
+                    <input type="hidden" name="_subject" value="New portfolio contact from anilprajapati1.com.np">
+                    <input type="hidden" name="_next" value="https://anilprajapati1.com.np/thanks.html">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="text" name="_honey" class="sr-only" tabindex="-1" autocomplete="off">
                     <label class="sr-only" for="name">Name</label>
                     <input id="name" type="text" placeholder="Name" class="contact__input" name="name" autocomplete="name" required>
                     <label class="sr-only" for="email">Email</label>
@@ -157,10 +304,28 @@
                     <label class="sr-only" for="message">Message</label>
                     <textarea name="message" id="message" rows="8" class="contact__input" placeholder="Message" required></textarea>
                     <button type="submit" class="contact__button button">Submit</button>
+                    <p class="contact__status" aria-live="polite"></p>
                 </form>
             </div>
         </section>
     </main>
+
+    <div class="project-modal" id="project-modal" aria-hidden="true">
+        <div class="project-modal__backdrop" data-close-modal></div>
+        <article class="project-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
+            <button class="project-modal__close" type="button" aria-label="Close project details" data-close-modal>
+                <i class='bx bx-x'></i>
+            </button>
+            <p class="project-modal__tag" id="project-modal-tag"></p>
+            <h2 id="project-modal-title"></h2>
+            <p id="project-modal-description"></p>
+            <ul class="project-modal__list" id="project-modal-list"></ul>
+            <div class="project-modal__actions">
+                <a href="https://github.com/hello-anil" class="button" target="_blank" rel="noreferrer">GitHub</a>
+                <a href="#contact" class="button button--ghost" data-close-modal>Discuss Project</a>
+            </div>
+        </article>
+    </div>
 
     <!-- FOOTER -->
     <footer class="footer">
