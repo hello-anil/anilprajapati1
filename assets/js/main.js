@@ -101,7 +101,7 @@ darkModeToggle?.addEventListener('click', () => {
 /*===== PROJECT DETAILS MODAL =====*/
 const projectDetails = {
   portfolio: {
-    tag: 'HTML • CSS • JavaScript',
+    tag: 'HTML | CSS | JavaScript',
     title: 'Personal Portfolio Website',
     description: 'A static portfolio designed for fast hosting, clear content, dark mode, responsive navigation, project cards, and a hosted contact flow.',
     bullets: [
@@ -151,7 +151,7 @@ const projectDetails = {
     ]
   },
   contact: {
-    tag: 'Forms • UX',
+    tag: 'Forms | UX',
     title: 'Contact Workflow',
     description: 'An accessible form flow with semantic labels, required fields, spam-reduction fields, and a dedicated success page.',
     bullets: [
