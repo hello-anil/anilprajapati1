@@ -286,18 +286,15 @@
         <section class="contact section" id="contact">
             <h2 class="section-title">Contact</h2>
             <div class="contact__container bd-grid">
-                <form action="https://formsubmit.co/harry7anil@gmail.com" class="contact__form" method="post">
-                    <input type="hidden" name="_subject" value="New portfolio contact from anilprajapati1.com.np">
-                    <input type="hidden" name="_next" value="https://anilprajapati1.com.np/thanks.html">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="text" name="_honey" class="sr-only" tabindex="-1" autocomplete="off">
+                <form action="mailto:harry7anil@gmail.com" class="contact__form" method="post" enctype="text/plain" data-recipient="harry7anil@gmail.com">
                     <label class="sr-only" for="name">Name</label>
                     <input id="name" type="text" placeholder="Name" class="contact__input" name="name" autocomplete="name" required>
                     <label class="sr-only" for="email">Email</label>
                     <input id="email" type="email" placeholder="Email" class="contact__input" name="email" autocomplete="email" required>
                     <label class="sr-only" for="message">Message</label>
                     <textarea name="message" id="message" rows="8" class="contact__input" placeholder="Message" required></textarea>
-                    <button type="submit" class="contact__button button">Submit</button>
+                    <button type="submit" class="contact__button button"><i class='bx bx-envelope' aria-hidden="true"></i>Email Me</button>
+                    <p class="contact__fallback">Direct email: <a href="mailto:harry7anil@gmail.com">harry7anil@gmail.com</a></p>
                     <p class="contact__status" aria-live="polite"></p>
                 </form>
             </div>

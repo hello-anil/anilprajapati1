@@ -156,8 +156,8 @@ const projectDetails = {
     description: 'An accessible form flow with semantic labels, required fields, spam-reduction fields, and a dedicated success page.',
     bullets: [
       'Uses accessible hidden labels and live status messaging.',
-      'Redirects to a branded thank-you page after submission.',
-      'Includes a honeypot field and disabled FormSubmit CAPTCHA.'
+      'Builds a prefilled email draft without depending on a third-party form host.',
+      'Includes a visible direct email fallback for visitors.'
     ]
   }
 };
@@ -207,7 +207,25 @@ window.addEventListener('keydown', (event) => {
 const contactForm = document.querySelector('.contact__form');
 const contactStatus = document.querySelector('.contact__status');
 
-contactForm?.addEventListener('submit', () => {
-  if (!contactStatus) return;
-  contactStatus.textContent = 'Sending your message securely...';
+contactForm?.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  if (!contactForm.checkValidity()) {
+    contactForm.reportValidity();
+    return;
+  }
+
+  const formData = new FormData(contactForm);
+  const recipient = contactForm.dataset.recipient || 'harry7anil@gmail.com';
+  const name = String(formData.get('name') || '').trim();
+  const email = String(formData.get('email') || '').trim();
+  const message = String(formData.get('message') || '').trim();
+  const subject = encodeURIComponent(`Portfolio contact from ${name || 'website visitor'}`);
+  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+
+  if (contactStatus) {
+    contactStatus.textContent = 'Opening your email app. If it does not open, use the direct email link above.';
+  }
+
+  window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
 });

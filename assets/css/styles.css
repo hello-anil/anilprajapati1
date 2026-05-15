@@ -784,9 +784,21 @@ textarea.contact__input {
   margin-left: auto;
 }
 
+.contact__fallback {
+  margin-top: .85rem;
+  color: var(--muted-color);
+  font-size: var(--smaller-font-size);
+  text-align: right;
+}
+
+.contact__fallback a {
+  color: var(--accent);
+  font-weight: 700;
+}
+
 .contact__status {
   min-height: 1.4rem;
-  margin-top: .85rem;
+  margin-top: .45rem;
   color: var(--muted-color);
   font-size: var(--smaller-font-size);
   text-align: right;
