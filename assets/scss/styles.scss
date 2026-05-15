@@ -388,18 +388,19 @@ body.dark-mode .l-header {
 }
 
 .home__avatar {
-  width: min(64vw, 260px);
-  padding: .45rem;
+  width: clamp(180px, 24vw, 236px);
+  padding: .35rem;
   background-color: var(--surface-color);
   border: 1px solid var(--border-color);
   border-radius: 999px;
-  box-shadow: 0 18px 44px var(--shadow-color);
+  box-shadow: 0 14px 34px var(--shadow-color);
 }
 
 .home__avatar img {
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
+  object-position: center 28%;
   border-radius: 999px;
 }
 
@@ -545,11 +546,12 @@ body.dark-mode .skills__percentage {
 }
 
 .about__img img {
-  width: min(72vw, 250px);
+  width: min(72vw, 230px);
   aspect-ratio: 1;
   object-fit: cover;
+  object-position: center 28%;
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
 }
 
 /*===== SERVICES =====*/
@@ -998,6 +1000,16 @@ body.dark-mode .project-modal__actions .button--ghost {
   color: #e5eefb !important;
   background-color: transparent !important;
   border-color: rgba(148, 163, 184, .35) !important;
+}
+
+body.dark-mode .home__avatar {
+  background-color: #111827;
+  border-color: rgba(148, 163, 184, .26);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, .2);
+}
+
+body.dark-mode .about__img img {
+  border-color: rgba(148, 163, 184, .24);
 }
 
 /*===== MEDIA QUERIES =====*/
