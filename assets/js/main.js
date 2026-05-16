@@ -18,6 +18,209 @@ const showMenu = (toggleId, navId) => {
 
 showMenu('nav-toggle', 'nav-menu');
 
+/*===== CINEMATIC MOTION SYSTEM =====*/
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const canUseFinePointer = window.matchMedia('(pointer: fine)');
+const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+function splitTextWords(element) {
+  if (!element || element.dataset.split === 'true') return;
+
+  const words = element.textContent.trim().split(/\s+/);
+  element.textContent = '';
+
+  words.forEach((word, index) => {
+    const span = document.createElement('span');
+    span.className = 'split-word';
+    span.style.setProperty('--word-index', index);
+    span.textContent = word;
+    element.appendChild(span);
+
+    if (index < words.length - 1) {
+      element.appendChild(document.createTextNode(' '));
+    }
+  });
+
+  element.dataset.split = 'true';
+}
+
+function initCinematicMotion() {
+  if (reduceMotion.matches) {
+    document.body.classList.add('is-ready');
+    return;
+  }
+
+  const heroDescription = document.querySelector('.home__description');
+  splitTextWords(heroDescription);
+
+  const revealTargets = document.querySelectorAll(
+    '.section-title, .about__container, .service__card, .skills__container, .work__card, .resume__panel, .contact__form, .footer'
+  );
+
+  revealTargets.forEach((target, index) => {
+    target.classList.add('reveal-item');
+    target.style.transitionDelay = `${Math.min(index % 6, 5) * 70}ms`;
+  });
+
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    },
+    { threshold: 0.16, rootMargin: '0px 0px -8% 0px' }
+  );
+
+  revealTargets.forEach((target) => sectionObserver.observe(target));
+
+  window.requestAnimationFrame(() => {
+    document.body.classList.add('is-ready');
+    heroDescription?.classList.add('is-visible');
+  });
+}
+
+function initSmoothAnchors() {
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const id = link.getAttribute('href');
+      if (!id || id === '#') return;
+
+      const target = document.querySelector(id);
+      if (!target) return;
+
+      event.preventDefault();
+      target.scrollIntoView({ behavior: reduceMotion.matches ? 'auto' : 'smooth', block: 'start' });
+      history.pushState(null, '', id);
+    });
+  });
+}
+
+function initParallaxLayers() {
+  if (reduceMotion.matches) return;
+
+  const layers = document.querySelectorAll('[data-depth]');
+  const heroData = document.querySelector('.home__data');
+  let latestScroll = window.scrollY;
+  let latestVelocity = 0;
+  let lastScroll = latestScroll;
+  let tickingMotion = false;
+
+  function updateMotion() {
+    latestScroll = window.scrollY;
+    latestVelocity += (latestScroll - lastScroll - latestVelocity) * 0.18;
+    lastScroll = latestScroll;
+
+    layers.forEach((layer) => {
+      const depth = Number(layer.dataset.depth || 0.2);
+      const y = latestScroll * depth;
+      const blur = clamp(Math.abs(latestVelocity) * 0.025, 0, 5);
+      layer.style.transform = `translate3d(0, ${y}px, 0)`;
+      layer.style.filter = `blur(${36 + blur}px)`;
+    });
+
+    if (heroData) {
+      const heroLift = clamp(latestScroll * -0.035, -28, 0);
+      heroData.style.transform = `translate3d(0, ${heroLift}px, 0)`;
+    }
+
+    tickingMotion = false;
+  }
+
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (!tickingMotion) {
+        window.requestAnimationFrame(updateMotion);
+        tickingMotion = true;
+      }
+    },
+    { passive: true }
+  );
+
+  updateMotion();
+}
+
+function initMagneticInteractions() {
+  if (reduceMotion.matches || !canUseFinePointer.matches) return;
+
+  const magneticTargets = document.querySelectorAll('.button, .nav__link, .home__social-icon, .dark-mode-toggle, .work__details');
+
+  magneticTargets.forEach((target) => {
+    target.classList.add('magnetic');
+
+    target.addEventListener('mousemove', (event) => {
+      const rect = target.getBoundingClientRect();
+      const x = event.clientX - rect.left - rect.width / 2;
+      const y = event.clientY - rect.top - rect.height / 2;
+
+      target.style.transform = `translate3d(${x * 0.16}px, ${y * 0.16}px, 0)`;
+    });
+
+    target.addEventListener('mouseleave', () => {
+      target.style.transform = '';
+    });
+  });
+}
+
+function initCursorFollower() {
+  if (reduceMotion.matches || !canUseFinePointer.matches) return;
+
+  const cursor = document.querySelector('.cursor-follower');
+  if (!cursor) return;
+
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let cursorX = mouseX;
+  let cursorY = mouseY;
+
+  window.addEventListener('pointermove', (event) => {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+    cursor.classList.add('is-active');
+  });
+
+  document.querySelectorAll('a, button, input, textarea').forEach((target) => {
+    target.addEventListener('pointerenter', () => cursor.classList.add('is-hovering'));
+    target.addEventListener('pointerleave', () => cursor.classList.remove('is-hovering'));
+  });
+
+  function renderCursor() {
+    cursorX += (mouseX - cursorX) * 0.16;
+    cursorY += (mouseY - cursorY) * 0.16;
+    cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
+    window.requestAnimationFrame(renderCursor);
+  }
+
+  renderCursor();
+}
+
+function initPageTransitions() {
+  if (reduceMotion.matches) return;
+
+  document.querySelectorAll('a[href]:not([href^="#"]):not([target])').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const href = link.getAttribute('href');
+      if (!href || href.startsWith('mailto:')) return;
+
+      event.preventDefault();
+      document.body.classList.add('is-transitioning');
+
+      window.setTimeout(() => {
+        window.location.href = href;
+      }, 260);
+    });
+  });
+}
+
+initCinematicMotion();
+initSmoothAnchors();
+initParallaxLayers();
+initMagneticInteractions();
+initCursorFollower();
+initPageTransitions();
+
 /*==================== REMOVE MENU MOBILE ====================*/
 const navMenu = document.getElementById('nav-menu');
 const navToggle = document.getElementById('nav-toggle');
