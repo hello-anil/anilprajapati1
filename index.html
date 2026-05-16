@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio of Anil Prajapati, web designer and IT professional.">
-    <meta name="theme-color" content="#2563eb">
+    <meta name="theme-color" content="#020403">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Anil Prajapati | Web Developer & IT Support Specialist">
     <meta property="og:description" content="Portfolio of Anil Prajapati: responsive websites, IT support, network administration, and cybersecurity-focused work.">
@@ -18,8 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="preload" as="image" href="assets/img/pro-re.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css">
 
     <!-- ===== BOX ICONS ===== -->
@@ -39,19 +38,12 @@
                     <span>Anil</span>
                 </a>
             </div>
-            <!-- darkmode -->
-            <button id="dark-mode-toggle" class="dark-mode-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
-                <i class='bx bx-moon' aria-hidden="true"></i>
-                <span>Dark</span>
-            </button>
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
-                    <li class="nav__item"><a href="#home" class="nav__link active">Home</a></li>
-                    <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+                    <li class="nav__item"><a href="#work" class="nav__link active">Projects</a></li>
                     <li class="nav__item"><a href="#services" class="nav__link">Services</a></li>
+                    <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
                     <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
-                    <li class="nav__item"><a href="#work" class="nav__link">Work</a></li>
-                    <li class="nav__item"><a href="#resume" class="nav__link">Resume</a></li>
                     <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
                 </ul>
             </div>
@@ -65,38 +57,24 @@
         <!-- HOME -->
         <section class="home bd-grid" id="home">
             <div class="home__data">
-                <p class="home__eyebrow">Web Development | IT Support | Security Basics</p>
-                <h1 class="home__title">Hi,<br>I am <span class="home__title-color">Anil</span><br>Web Developer</h1>
-                <p class="home__description">Responsive websites, practical IT support, and security-aware digital workflows.</p>
+                <p class="home__eyebrow">Web development & IT support</p>
+                <h1 class="home__title"><span>Anil</span></h1>
+                <p class="home__description">I build responsive websites and provide practical IT support for setup, troubleshooting, maintenance, and security-aware workflows.</p>
                 <div class="home__actions">
-                    <a href="#contact" class="button"><i class='bx bx-send' aria-hidden="true"></i>Contact</a>
+                    <a href="#contact" class="button"><i class='bx bx-send' aria-hidden="true"></i>Start a project</a>
                     <a href="resume.html" class="button button--ghost"><i class='bx bx-file' aria-hidden="true"></i>View Resume</a>
                 </div>
-                <dl class="home__stats" aria-label="Portfolio highlights">
-                    <div>
-                        <dt>6+</dt>
-                        <dd>Projects</dd>
-                    </div>
-                    <div>
-                        <dt>4</dt>
-                        <dd>Skills</dd>
-                    </div>
-                    <div>
-                        <dt>24/7</dt>
-                        <dd>Learning</dd>
-                    </div>
-                </dl>
             </div>
             <div class="home__social">
                 <a href="https://www.linkedin.com/" class="home__social-icon" aria-label="LinkedIn profile"><i class='bx bxl-linkedin'></i></a>
                 <a href="https://github.com/hello-anil" class="home__social-icon" aria-label="GitHub"><i class='bx bxl-github'></i></a>
                 <a href="https://www.instagram.com/anil_prz/" class="home__social-icon" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+                <button id="dark-mode-toggle" class="dark-mode-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+                    <i class='bx bx-moon' aria-hidden="true"></i>
+                    <span>Theme</span>
+                </button>
             </div>
-            <div class="home__img">
-                <div class="home__avatar">
-                    <img src="assets/img/pro-re.png" alt="Anil Prajapati" width="499" height="499">
-                </div>
-            </div>
+            <a href="#about" class="home__scroll" aria-label="Scroll to about section"><span></span></a>
         </section>
 
         <!-- ABOUT -->
@@ -322,9 +300,9 @@
     <footer class="footer">
         <p class="footer__title">Anil Prajapati</p>
         <div class="footer__social">
-            <a href="https://www.facebook.com/anil.prazapatee.7" class="footer__icon" aria-label="Facebook"><i class='bx bxl-facebook'></i></a>
+            <a href="https://www.linkedin.com/" class="footer__icon" aria-label="LinkedIn profile"><i class='bx bxl-linkedin'></i></a>
+            <a href="https://github.com/hello-anil" class="footer__icon" aria-label="GitHub"><i class='bx bxl-github'></i></a>
             <a href="https://www.instagram.com/anil_prz" class="footer__icon" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
-            <a href="https://twitter.com/" class="footer__icon" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
         </div>
         <p class="footer__copy">&copy; Anil pvt. All rights reserved</p>
     </footer>

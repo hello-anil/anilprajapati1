@@ -73,10 +73,12 @@ scrollActive();
 const darkModeToggle = document.getElementById('dark-mode-toggle');
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
 const savedTheme = localStorage.getItem('theme');
+const themeParam = new URLSearchParams(window.location.search).get('theme');
 
 function setTheme(theme) {
   const isDark = theme === 'dark';
   document.body.classList.toggle('dark-mode', isDark);
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', isDark ? '#020403' : '#edf8f8');
 
   if (darkModeToggle) {
     darkModeToggle.setAttribute('aria-pressed', String(isDark));
@@ -90,7 +92,11 @@ function setTheme(theme) {
   }
 }
 
-setTheme(savedTheme || (prefersDark.matches ? 'dark' : 'light'));
+const initialTheme = themeParam === 'light' || themeParam === 'dark'
+  ? themeParam
+  : savedTheme || (prefersDark.matches ? 'dark' : 'light');
+
+setTheme(initialTheme);
 
 darkModeToggle?.addEventListener('click', () => {
   const nextTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
