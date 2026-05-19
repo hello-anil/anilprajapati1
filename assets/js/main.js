@@ -378,10 +378,13 @@ const modalDescription = document.getElementById('project-modal-description');
 const modalList = document.getElementById('project-modal-list');
 const modalButtons = document.querySelectorAll('[data-project]');
 const modalCloseButtons = document.querySelectorAll('[data-close-modal]');
+let lastFocusedElement = null;
 
-function openProjectModal(projectId) {
+function openProjectModal(projectId, trigger) {
   const project = projectDetails[projectId];
   if (!project || !modal || !modalTag || !modalTitle || !modalDescription || !modalList) return;
+
+  lastFocusedElement = trigger || document.activeElement;
 
   modalTag.textContent = project.tag;
   modalTitle.textContent = project.title;
@@ -390,7 +393,34 @@ function openProjectModal(projectId) {
   modal.classList.add('is-open');
   modal.setAttribute('aria-hidden', 'false');
   document.body.classList.add('modal-open');
-  modal.querySelector('.project-modal__close')?.focus();
+
+  // Focus trap management
+  const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  const firstFocusable = focusableElements[0];
+  const lastFocusable = focusableElements[focusableElements.length - 1];
+
+  setTimeout(() => {
+    firstFocusable?.focus();
+  }, 10);
+
+  const handleFocusTrap = (e) => {
+    if (e.key !== 'Tab') return;
+
+    if (e.shiftKey) {
+      if (document.activeElement === firstFocusable) {
+        e.preventDefault();
+        lastFocusable?.focus();
+      }
+    } else {
+      if (document.activeElement === lastFocusable) {
+        e.preventDefault();
+        firstFocusable?.focus();
+      }
+    }
+  };
+
+  modal.addEventListener('keydown', handleFocusTrap);
+  modal._handleFocusTrap = handleFocusTrap;
 }
 
 function closeProjectModal() {
@@ -398,10 +428,42 @@ function closeProjectModal() {
   modal.classList.remove('is-open');
   modal.setAttribute('aria-hidden', 'true');
   document.body.classList.remove('modal-open');
+
+  if (modal._handleFocusTrap) {
+    modal.removeEventListener('keydown', modal._handleFocusTrap);
+    delete modal._handleFocusTrap;
+  }
+
+  if (lastFocusedElement) {
+    lastFocusedElement.focus();
+    lastFocusedElement = null;
+  }
 }
 
 modalButtons.forEach((button) => {
-  button.addEventListener('click', () => openProjectModal(button.dataset.project));
+  button.addEventListener('click', (e) => {
+    e.stopPropagation(); // Prevent double trigger when card click is active
+    openProjectModal(button.dataset.project, button);
+  });
+});
+
+// UX: Make the entire project card clickable and accessible
+const workCards = document.querySelectorAll('.work__card');
+workCards.forEach((card) => {
+  const triggerModal = () => {
+    const btn = card.querySelector('.work__details');
+    if (btn) {
+      openProjectModal(btn.dataset.project, card);
+    }
+  };
+
+  card.addEventListener('click', triggerModal);
+  card.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      triggerModal();
+    }
+  });
 });
 
 modalCloseButtons.forEach((button) => {

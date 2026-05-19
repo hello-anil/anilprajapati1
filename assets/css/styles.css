@@ -755,6 +755,7 @@ body.is-ready .home__scroll {
   border-radius: var(--radius-md);
   box-shadow: 0 18px 60px var(--shadow-color);
   backdrop-filter: blur(16px);
+  transition: background-color .3s ease, border-color .3s ease, box-shadow .3s ease, transform .3s var(--cinematic-ease);
 }
 
 .reveal-item {
@@ -980,13 +981,23 @@ body.is-ready .home__description .split-word {
 
 /*===== WORK =====*/
 .work__card {
+  position: relative;
   overflow: hidden;
-  transition: transform .32s var(--cinematic-ease), border-color .18s ease, box-shadow .32s ease;
+  cursor: pointer;
+  transition: background-color .3s ease, border-color .3s ease, box-shadow .3s ease, transform .32s var(--cinematic-ease);
 }
 
-.work__card:hover {
+.work__card:hover,
+.work__card:focus-visible {
   border-color: rgba(65, 220, 231, .36);
   box-shadow: 0 28px 90px var(--shadow-color);
+  outline: none;
+}
+
+.work__card:hover .work__details,
+.work__card:focus-visible .work__details {
+  color: #031011;
+  background-color: var(--accent);
 }
 
 .work__card img {
