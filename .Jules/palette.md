@@ -10,3 +10,10 @@
 
 **Learning:** When using scroll-reveal systems (IntersectionObserver), automated tests must wait for the "visible" state or manually trigger it to interact with elements, as they might be hidden or non-interactive until scrolled into view.
 **Action:** Ensure all interactive elements have clear focus indicators and smooth transitions to maintain the "cinematic" feel even during state changes like theme switching.
+
+## 2025-05-17 - Responsive Layout & Lightweight Tooltips
+**Learning:** CSS Grid's `order` property is an elegant way to solve responsive header layout challenges (like shifting a menu button while keeping a theme toggle fixed) without duplicating HTML or relying on brittle absolute positioning.
+**Action:** Prioritize grid-based reordering for complex headers where logical tab order and visual layout need to diverge slightly across breakpoints.
+
+**Learning:** Tooltips for icon-only buttons can be implemented with zero JavaScript using `data-` attributes and pseudo-elements. This avoids the performance and maintenance overhead of external libraries while significantly improving accessibility for sighted users.
+**Action:** Use the `[data-tooltip]` pattern for global UI controls like theme switchers and social links.
