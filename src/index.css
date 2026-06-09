@@ -245,13 +245,6 @@ body.dark-mode .hero-title {
   padding-inline: .75rem;
 }
 
-.brand-mark {
-  border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--border));
-  background: color-mix(in srgb, var(--accent) 14%, var(--surface-strong));
-  color: var(--accent-strong);
-  box-shadow: 0 2px 8px var(--shadow);
-}
-
 .resume-title {
   font-size: clamp(2.35rem, 12vw, 3rem);
   line-height: 1;

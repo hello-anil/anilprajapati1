@@ -58,12 +58,6 @@ export function Header() {
           className="display-font flex items-center gap-3 text-lg font-bold text-[var(--text)] no-underline"
           aria-label="Anil portfolio home"
         >
-          <span
-            className="brand-mark inline-flex h-11 w-11 items-center justify-center rounded-lg text-base font-extrabold"
-            aria-hidden="true"
-          >
-            A
-          </span>
           <span>{site.shortName}</span>
         </a>
 
