@@ -5,6 +5,7 @@ import { CinematicEffects } from "../components/CinematicEffects.jsx";
 import { Footer } from "../components/Footer.jsx";
 import { Header } from "../components/Header.jsx";
 import { ProjectModal } from "../components/ProjectModal.jsx";
+import { ProjectReferences } from "../components/ProjectReferences.jsx";
 import { SocialLinks } from "../components/SocialLinks.jsx";
 import { SpiderMark } from "../components/SpiderMark.jsx";
 import { useSeo } from "../hooks/useSeo.js";
@@ -13,6 +14,7 @@ import {
   services,
   site,
   skills,
+  skillTags,
   timeline,
   works,
 } from "../data/siteData.js";
@@ -64,9 +66,9 @@ function Home() {
           <div className="hero-meta">
             <SocialLinks />
             <span>
-              WEB DEVELOPMENT
+              WEB APPLICATIONS
               <br />
-              <b>& IT SUPPORT</b>
+              <b>& BROWSER EXTENSIONS</b>
             </span>
           </div>
         </div>
@@ -264,9 +266,10 @@ function About() {
             <span className="red-text">YOUR TECH ALLY.</span>
           </SectionTitle>
           <p className="body-copy">
-            I'm Anil Prajapati, a web developer and IT support specialist. I
-            build clean interfaces, untangle technical problems, and bring a
-            security-aware approach to everyday digital work.
+            I'm Anil Prajapati. I build responsive portfolios, PHP/MySQL
+            applications, and browser extensions. From AdLock's local protection
+            controls to FOOD-SEWA's ordering workflows and V-Shiksha's education
+            platform, my projects combine interface design with application logic.
           </p>
           <p className="body-copy">
             Like my favorite neighborhood hero, I believe the small things
@@ -302,7 +305,7 @@ function Services() {
       <SectionTitle
         number="03"
         eyebrow="YOUR FRIENDLY NEIGHBORHOOD SERVICES"
-        description="A reliable helping hand for your next website or your everyday tech challenges."
+        description="Practical development experience from AdLock, V-Shiksha, FOOD-SEWA, and this portfolio."
       >
         MY <span className="outline-text">SUPERPOWERS.</span>
       </SectionTitle>
@@ -315,6 +318,7 @@ function Services() {
             </div>
             <h3>{service.title}</h3>
             <p>{service.text}</p>
+            <ProjectReferences projectIds={service.projectIds} />
             <a href="#contact" className="text-link">
               Let's make it happen <span>↗</span>
             </a>
@@ -335,39 +339,25 @@ function Skills() {
           <span className="red-text">THE TRADE.</span>
         </SectionTitle>
         <p className="body-copy">
-          The fundamentals behind every mission. Practical front-end skills,
-          thoughtful design, and a steady dose of curiosity.
+          The tools I've used to build these projects: React and Vite for this
+          portfolio, PHP and MySQL for application workflows, and JavaScript
+          browser APIs for AdLock.
         </p>
         <div className="skill-tags">
-          <span>Responsive design</span>
-          <span>IT troubleshooting</span>
-          <span>Security awareness</span>
-          <span>Accessibility</span>
+          {skillTags.map((tag) => (
+            <span key={tag}>{tag}</span>
+          ))}
         </div>
       </div>
       <div className="skill-list">
         {skills.map((skill) => (
           <div className="skill-row" key={skill.name}>
-            <div>
-              <span>
-                <i className={`bx ${skill.icon}`} aria-hidden="true" />
-                {skill.name}
-              </span>
-              <span>
-                {skill.percent}
-                <small>%</small>
-              </span>
+            <div className="skill-heading">
+              <i className={`bx ${skill.icon}`} aria-hidden="true" />
+              <span>{skill.name}</span>
             </div>
-            <div
-              className="skill-track"
-              role="meter"
-              aria-label={`${skill.name} proficiency`}
-              aria-valuenow={skill.percent}
-              aria-valuemin={0}
-              aria-valuemax={100}
-            >
-              <div style={{ width: `${skill.percent}%` }} />
-            </div>
+            <p className="skill-description">{skill.detail}</p>
+            <ProjectReferences projectIds={skill.projectIds} />
           </div>
         ))}
       </div>
@@ -378,7 +368,11 @@ function Skills() {
 function ResumePreview() {
   return (
     <section className="section-shell" id="resume">
-      <SectionTitle number="05" eyebrow="CHARACTER DEVELOPMENT">
+      <SectionTitle
+        number="05"
+        eyebrow="CHARACTER DEVELOPMENT"
+        description="Experience built through real projects. Each mission adds a new tool to the belt."
+      >
         ALWAYS <span className="outline-text">LEVELING UP.</span>
       </SectionTitle>
       <div className="resume-grid">
@@ -387,7 +381,8 @@ function ResumePreview() {
             <article key={item.title}>
               <p className="eyebrow">{item.label}</p>
               <h3>{item.title}</h3>
-              <p>{item.text}</p>
+              <p className="timeline-description">{item.text}</p>
+              <ProjectReferences projectIds={item.projectIds} />
             </article>
           ))}
         </div>

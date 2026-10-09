@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Header } from "../components/Header.jsx";
 import { Footer } from "../components/Footer.jsx";
 import { useSeo } from "../hooks/useSeo.js";
-import { resumeSkills, site, timeline, works } from "../data/siteData.js";
+import { learning, resumeSkills, site, works } from "../data/siteData.js";
 
 export function ResumePage({ theme }) {
   useSeo("resume");
@@ -31,7 +31,7 @@ export function ResumePage({ theme }) {
               {site.name}
             </h1>
             <p className="mt-3 text-base text-[var(--muted)] sm:text-lg">
-              Web Developer & IT Support Specialist
+              {site.role}
             </p>
             <div className="mt-5 flex flex-wrap justify-center gap-3 break-words text-sm">
               <a
@@ -54,8 +54,7 @@ export function ResumePage({ theme }) {
 
           <ResumeSection title="Profile">
             <p className="leading-7 text-[var(--muted)]">
-              Practical web and IT learner focused on responsive websites,
-              troubleshooting, network basics, and cybersecurity awareness.
+              {site.profile}
             </p>
           </ResumeSection>
 
@@ -80,9 +79,17 @@ export function ResumePage({ theme }) {
                 .map((work) => (
                   <article key={work.id}>
                     <h3 className="font-bold">{work.title}</h3>
+                    <p className="mt-1 text-xs font-bold text-[var(--accent)]">
+                      {work.tag}
+                    </p>
                     <p className="mt-1 leading-7 text-[var(--muted)]">
                       {work.summary}
                     </p>
+                    <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-6 text-[var(--muted)]">
+                      {work.bullets.map((bullet) => (
+                        <li key={bullet}>{bullet}</li>
+                      ))}
+                    </ul>
                     <a
                       className="resume-repo-link"
                       href={work.repository}
@@ -98,22 +105,15 @@ export function ResumePage({ theme }) {
 
           <ResumeSection title="Learning Focus">
             <ul className="space-y-2 text-[var(--muted)]">
-              {timeline.map((item) => (
-                <li key={item.title} className="flex gap-3">
+              {learning.map((item) => (
+                <li key={item} className="flex gap-3">
                   <i
                     className="bx bx-certification mt-0.5 text-lg text-[var(--accent)]"
                     aria-hidden="true"
                   />
-                  <span>{item.title}</span>
+                  <span>{item}</span>
                 </li>
               ))}
-              <li className="flex gap-3">
-                <i
-                  className="bx bx-certification mt-0.5 text-lg text-[var(--accent)]"
-                  aria-hidden="true"
-                />
-                <span>Professional support communication</span>
-              </li>
             </ul>
           </ResumeSection>
         </article>

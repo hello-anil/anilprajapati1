@@ -3,6 +3,7 @@
 export const works = [
   {
     id: "adlock-edge",
+    shortTitle: "AdLock",
     repoName: "adlock-edge",
     title: "AdLock — Edge Extension",
     category: "Extensions",
@@ -29,6 +30,7 @@ export const works = [
   },
   {
     id: "v-shiksha",
+    shortTitle: "V-Shiksha",
     repoName: "V-Shiksha",
     title: "V-Shiksha — Online Education",
     category: "Web development",
@@ -52,6 +54,7 @@ export const works = [
   },
   {
     id: "portfolio",
+    shortTitle: "Portfolio",
     repoName: "anilprajapati1",
     title: "Anil Prajapati — Portfolio",
     category: "Web development",
@@ -62,7 +65,7 @@ export const works = [
     previewNote:
       "Preview of the Spider Edition. The live website may show the published version.",
     summary:
-      "My personal portfolio for web development, IT support, and real project work.",
+      "My responsive React portfolio with project details, suit presets, and a printable résumé.",
     description:
       "A responsive React portfolio built with Vite, React Router, and Tailwind CSS. This special edition adds classic Spider-Man styling, suit presets, project dialogs, and a printable résumé to the portfolio.",
     bullets: [
@@ -77,6 +80,7 @@ export const works = [
   },
   {
     id: "food-sewa",
+    shortTitle: "FOOD-SEWA",
     repoName: "FOOD-SEWA",
     title: "FOOD-SEWA — Food Delivery",
     category: "Web development",
@@ -96,6 +100,7 @@ export const works = [
       "Administrator dashboard and eSewa, Khalti, and Stripe integration code.",
     ],
     repository: "https://github.com/hello-anil/FOOD-SEWA",
+    resume: true,
   },
 ];
 

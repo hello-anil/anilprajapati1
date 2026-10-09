@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { site } from "../data/siteData.js";
+import { site, skills } from "../data/siteData.js";
 
 const personSchema = {
   "@context": "https://schema.org",
@@ -8,19 +8,13 @@ const personSchema = {
   name: site.name,
   url: `${site.domain}/`,
   image: `${site.domain}${site.image}`,
-  jobTitle: "Web Developer and IT Support Specialist",
+  jobTitle: site.role,
   email: `mailto:${site.email}`,
   sameAs: [
     "https://github.com/hello-anil",
     "https://www.instagram.com/anil_prz/",
   ],
-  knowsAbout: [
-    "Web development",
-    "IT support",
-    "Network administration",
-    "Cybersecurity awareness",
-    "Responsive web design",
-  ],
+  knowsAbout: skills.map((skill) => skill.name),
 };
 
 const websiteSchema = {
@@ -46,7 +40,7 @@ const resumeSchema = {
     "@id": `${site.domain}/#anil-prajapati`,
     name: site.name,
     url: `${site.domain}/`,
-    jobTitle: "Web Developer and IT Support Specialist",
+    jobTitle: site.role,
     email: `mailto:${site.email}`,
     sameAs: [
       "https://github.com/hello-anil",
