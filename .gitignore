@@ -3,3 +3,5 @@ dist/
 .vite/
 npm-debug.log*
 vite-dev*.log
+output/playwright/
+.playwright-cli/

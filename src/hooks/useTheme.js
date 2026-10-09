@@ -1,32 +1,35 @@
-import { useEffect, useMemo, useState } from 'react';
-
+import { useEffect, useMemo, useState } from "react";
 const getInitialTheme = () => {
-  if (typeof window === 'undefined') return 'dark';
-
-  const themeParam = new URLSearchParams(window.location.search).get('theme');
-  const savedTheme = window.localStorage.getItem('theme');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-  if (themeParam === 'light' || themeParam === 'dark') return themeParam;
-  return savedTheme || (prefersDark ? 'dark' : 'light');
+  const preset = new URLSearchParams(window.location.search).get("suit");
+  if (preset === "classic" || preset === "symbiote") return preset;
+  try {
+    return window.localStorage.getItem("spider-suit-v1") === "symbiote"
+      ? "symbiote"
+      : "classic";
+  } catch {
+    return "classic";
+  }
 };
-
 export function useTheme() {
   const [theme, setTheme] = useState(getInitialTheme);
-
   useEffect(() => {
-    const isDark = theme === 'dark';
-    document.body.classList.toggle('dark-mode', isDark);
-    document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', isDark ? '#020403' : '#edf8f8');
-    window.localStorage.setItem('theme', theme);
+    document.body.classList.toggle("dark-mode", theme === "symbiote");
+    document.documentElement.style.colorScheme = "dark";
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute("content", "#101014");
+    try {
+      window.localStorage.setItem("spider-suit-v1", theme);
+    } catch {
+      /* Switching works without storage. */
+    }
   }, [theme]);
-
   return useMemo(
     () => ({
       theme,
-      isDark: theme === 'dark',
-      toggleTheme: () => setTheme((current) => (current === 'dark' ? 'light' : 'dark')),
+      isDark: theme === "symbiote",
+      toggleTheme: () =>
+        setTheme((current) => (current === "classic" ? "symbiote" : "classic")),
     }),
     [theme],
   );

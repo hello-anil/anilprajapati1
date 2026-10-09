@@ -1,102 +1,100 @@
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { navLinks, site } from '../data/siteData.js';
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { navLinks } from "../data/siteData.js";
+import { SpiderMark } from "./SpiderMark.jsx";
+import { ThemeToggle } from "./ThemeToggle.jsx";
 
-const sectionIds = navLinks.map((link) => link.href.slice(1));
-
-export function Header() {
+export function Header({ theme }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeId, setActiveId] = useState('work');
+  const [activeId, setActiveId] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
-
   useEffect(() => {
     const onScroll = () => {
-      const scrollY = window.scrollY;
-      let next = activeId;
-
-      sectionIds.forEach((id) => {
-        const section = document.getElementById(id);
-        if (!section) return;
-
-        const top = section.offsetTop - 120;
-        if (scrollY >= top && scrollY <= top + section.offsetHeight) next = id;
+      let next = "";
+      navLinks.forEach(({ href }) => {
+        const section = document.getElementById(href.slice(1));
+        if (section && section.getBoundingClientRect().top <= 160)
+          next = href.slice(1);
       });
-
       setActiveId(next);
     };
-
     onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [activeId]);
-
-  const scrollTo = (event, href) => {
-    event.preventDefault();
-    const id = href.slice(1);
-    setIsOpen(false);
-
-    const runScroll = () => {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      window.history.replaceState(null, '', href);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  useEffect(() => {
+    const close = (event) => {
+      if (event.key === "Escape") setIsOpen(false);
     };
-
-    if (location.pathname !== '/') {
-      navigate('/');
-      window.setTimeout(runScroll, 80);
-    } else {
-      runScroll();
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
+  }, []);
+  const scrollTo = (event, href) => {
+    setIsOpen(false);
+    if (location.pathname !== "/") {
+      event.preventDefault();
+      navigate(`/${href}`);
     }
   };
-
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-[var(--border)] bg-[var(--surface)]/80 backdrop-blur-xl">
-      <nav className="mx-auto flex h-20 w-[min(1120px,calc(100%-2rem))] items-center justify-between">
+    <header className="site-header">
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
+      <nav className="shell header-nav" aria-label="Main navigation">
         <a
-          href="#home"
-          onClick={(event) => scrollTo(event, '#home')}
-          className="display-font flex items-center gap-3 text-lg font-bold text-[var(--text)] no-underline"
-          aria-label="Anil portfolio home"
+          href={location.pathname === "/" ? "#home" : "/#home"}
+          onClick={(event) => scrollTo(event, "#home")}
+          className="brand"
+          aria-label="Anil Prajapati portfolio home"
         >
-          <span>{site.shortName}</span>
+          <SpiderMark />
+          <span>
+            ANIL<span className="red-text">.</span>
+            <small>THE SPIDER EDITION</small>
+          </span>
         </a>
-
-        <div
-          className={`fixed left-4 right-4 top-24 rounded-lg border border-[var(--border)] bg-[var(--surface-strong)] p-4 shadow-2xl backdrop-blur-xl transition md:static md:block md:border-0 md:bg-transparent md:p-0 md:shadow-none ${
-            isOpen ? 'block' : 'hidden'
-          }`}
-          id="nav-menu"
-        >
-          <ul className="flex flex-col gap-2 md:flex-row md:items-center">
-            {navLinks.map((link) => {
-              const id = link.href.slice(1);
-              return (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    onClick={(event) => scrollTo(event, link.href)}
-                    className={`block rounded-md px-4 py-2 text-sm font-bold no-underline transition hover:bg-[var(--surface-muted)] hover:text-[var(--accent)] ${
-                      activeId === id ? 'bg-[var(--surface-muted)] text-[var(--accent)]' : 'text-[var(--muted)]'
-                    }`}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              );
-            })}
+        <div className={`nav-menu ${isOpen ? "is-open" : ""}`} id="nav-menu">
+          <ul>
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={location.pathname === "/" ? link.href : `/${link.href}`}
+                  onClick={(event) => scrollTo(event, link.href)}
+                  aria-current={
+                    activeId === link.href.slice(1) ? "location" : undefined
+                  }
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
-
-        <button
-          className="icon-btn nav-toggle"
-          type="button"
-          aria-label={isOpen ? 'Close menu' : 'Open menu'}
-          aria-controls="nav-menu"
-          aria-expanded={isOpen}
-          onClick={() => setIsOpen((open) => !open)}
-        >
-          <i className={`bx ${isOpen ? 'bx-x' : 'bx-menu'} text-2xl`} aria-hidden="true" />
-        </button>
+        <div className="header-actions">
+          <ThemeToggle theme={theme} />
+          <a
+            href={location.pathname === "/" ? "#contact" : "/#contact"}
+            className="header-contact"
+            onClick={(event) => scrollTo(event, "#contact")}
+          >
+            Let's talk <span>↗</span>
+          </a>
+          <button
+            className="icon-btn nav-toggle"
+            type="button"
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-controls="nav-menu"
+            aria-expanded={isOpen}
+            onClick={() => setIsOpen((open) => !open)}
+          >
+            <i
+              className={`bx ${isOpen ? "bx-x" : "bx-menu"}`}
+              aria-hidden="true"
+            />
+          </button>
+        </div>
       </nav>
     </header>
   );

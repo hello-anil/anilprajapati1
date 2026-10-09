@@ -1,0 +1,127 @@
+// Project descriptions and links verified against hello-anil's public repositories.
+// Preview images are bundled locally so the gallery does not depend on GitHub at runtime.
+export const works = [
+  {
+    id: "adlock-edge",
+    repoName: "adlock-edge",
+    title: "AdLock — Edge Extension",
+    category: "Extensions",
+    tag: "JavaScript | Browser Extension",
+    status: "Edge Add-ons",
+    image: "/assets/projects/adlock-preview.png",
+    alt: "Current AdLock red-and-blue extension popup, rendered from the adlock-edge source in demo mode",
+    previewNote:
+      "Current popup interface rendered from the repository in demo mode; displayed counters are demo data.",
+    summary:
+      "Privacy-focused ad blocking with protection levels, site controls, and custom filters.",
+    description:
+      "A Microsoft Edge extension for blocking ads, trackers, unwanted popups, and advertising redirects. Protection settings and blocking data stay on the device.",
+    bullets: [
+      "Relaxed, Balanced, and Strict protection levels.",
+      "Global and per-site pause controls.",
+      "Custom filters and settings backup.",
+    ],
+    repository: "https://github.com/hello-anil/adlock-edge",
+    liveUrl:
+      "https://microsoftedge.microsoft.com/addons/detail/dknkhicpaggioijaimoapfdmcgggcbkm",
+    liveLabel: "View on Edge Add-ons",
+    resume: true,
+  },
+  {
+    id: "v-shiksha",
+    repoName: "V-Shiksha",
+    title: "V-Shiksha — Online Education",
+    category: "Web development",
+    tag: "PHP | MySQL | CSS",
+    status: "Source available",
+    image: "/assets/projects/v-shiksha.png",
+    alt: "V-Shiksha landing page rendered from its repository HTML and CSS",
+    previewNote:
+      "Static landing-page preview rendered from the repository source.",
+    summary:
+      "An education platform with student, teacher, and administrator areas.",
+    description:
+      "A PHP-based online education project with student registration, role-specific dashboards, course management, lessons, enrollment, and payment-related pages. The repository includes a SQL database schema.",
+    bullets: [
+      "Separate student, teacher, and administrator areas.",
+      "Course, lesson, and enrollment workflows.",
+      "Student registration and profile pages.",
+    ],
+    repository: "https://github.com/hello-anil/V-Shiksha",
+    resume: true,
+  },
+  {
+    id: "portfolio",
+    repoName: "anilprajapati1",
+    title: "Anil Prajapati — Portfolio",
+    category: "Web development",
+    tag: "React | Vite | Tailwind CSS",
+    status: "Live website",
+    image: "/assets/projects/portfolio.png",
+    alt: "Screenshot of Anil Prajapati’s Spider Edition portfolio hero",
+    previewNote:
+      "Preview of the Spider Edition. The live website may show the published version.",
+    summary:
+      "My personal portfolio for web development, IT support, and real project work.",
+    description:
+      "A responsive React portfolio built with Vite, React Router, and Tailwind CSS. This special edition adds classic Spider-Man styling, suit presets, project dialogs, and a printable résumé to the portfolio.",
+    bullets: [
+      "Responsive portfolio sections and mobile navigation.",
+      "Classic and Symbiote suit presets in this edition.",
+      "Project details, contact draft preparation, and printable résumé.",
+    ],
+    repository: "https://github.com/hello-anil/anilprajapati1",
+    liveUrl: "https://anilprajapati1.com.np",
+    liveLabel: "Visit live website",
+    resume: true,
+  },
+  {
+    id: "adlock-privacy",
+    repoName: "adlock-privacy",
+    title: "AdLock — Privacy Documentation",
+    category: "Documentation",
+    tag: "Markdown | Privacy",
+    status: "Documentation",
+    icon: "bx-shield-quarter",
+    coverTitle: "PRIVACY\nBY DESIGN.",
+    coverSubtitle: "AdLock / Privacy documentation",
+    summary:
+      "Public documentation of AdLock’s local storage and privacy practices.",
+    description:
+      "The companion privacy-policy repository for AdLock. Its documentation explains local protection settings, blocking statistics, reputation data, fingerprint defenses, and storage removal.",
+    bullets: [
+      "Documents the extension’s no-telemetry policy.",
+      "Explains local settings, rules, and blocking statistics.",
+      "Describes retention, resets, and uninstall behavior.",
+    ],
+    repository: "https://github.com/hello-anil/adlock-privacy",
+    liveUrl:
+      "https://github.com/hello-anil/adlock-privacy/blob/main/PRIVACY.md",
+    liveLabel: "Read privacy policy",
+  },
+  {
+    id: "food-sewa",
+    repoName: "FOOD-SEWA",
+    title: "FOOD-SEWA — Food Delivery",
+    category: "Early stage",
+    tag: "Food Delivery | Project Seed",
+    status: "Early stage",
+    icon: "bx-restaurant",
+    coverTitle: "FOOD\nSEWA.",
+    coverSubtitle: "Food delivery / The next mission",
+    summary:
+      "A food delivery project seed, currently documented in its repository README.",
+    description:
+      "FOOD-SEWA is a public repository described as a Food Delivery System. It currently contains a README only; application code and a live demo are not yet available.",
+    bullets: [
+      "Repository initialized for a food delivery system.",
+      "Currently at the README stage.",
+      "Follow the repository for future implementation.",
+    ],
+    repository: "https://github.com/hello-anil/FOOD-SEWA",
+  },
+];
+
+export const projectDetails = Object.fromEntries(
+  works.map((project) => [project.id, project]),
+);

@@ -1,78 +1,304 @@
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import { CinematicEffects } from '../components/CinematicEffects.jsx';
-import { Footer } from '../components/Footer.jsx';
-import { Header } from '../components/Header.jsx';
-import { ProjectModal } from '../components/ProjectModal.jsx';
-import { SocialLinks } from '../components/SocialLinks.jsx';
-import { useSeo } from '../hooks/useSeo.js';
-import { learning, services, site, skills, timeline, works } from '../data/siteData.js';
+import { Link } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { CinematicEffects } from "../components/CinematicEffects.jsx";
+import { Footer } from "../components/Footer.jsx";
+import { Header } from "../components/Header.jsx";
+import { ProjectModal } from "../components/ProjectModal.jsx";
+import { SocialLinks } from "../components/SocialLinks.jsx";
+import { SpiderMark } from "../components/SpiderMark.jsx";
+import { useSeo } from "../hooks/useSeo.js";
+import {
+  learning,
+  services,
+  site,
+  skills,
+  timeline,
+  works,
+} from "../data/siteData.js";
 
-function SectionTitle({ children }) {
-  return <h2 className="section-title reveal-item">{children}</h2>;
+function SectionTitle({ number, eyebrow, children, description }) {
+  return (
+    <div className="section-heading">
+      <div>
+        <p className="eyebrow">
+          <span>{number} /</span> {eyebrow}
+        </p>
+        <h2>{children}</h2>
+      </div>
+      {description && <p className="section-description">{description}</p>}
+    </div>
+  );
 }
 
-function Home({ theme }) {
-  const scrollToContact = (event) => {
-    event.preventDefault();
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    window.history.replaceState(null, '', '#contact');
-  };
-
+function Home() {
   return (
-    <section id="home" className="hero-section mx-auto grid w-[min(1120px,calc(100%-2rem))] items-center gap-8 pt-28 sm:gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,22rem)_auto]">
-      <div className="reveal-item max-w-4xl">
-        <p className="mb-4 text-xs font-extrabold uppercase tracking-[.2em] text-[var(--accent)] sm:mb-5 sm:text-sm sm:tracking-[.24em]">Web development & IT support</p>
-        <h1 className="hero-title hero-name display-font font-extrabold leading-[.9] tracking-normal sm:leading-[.88]">
-          {site.name}
-        </h1>
-        <p className="mt-6 max-w-2xl text-base leading-7 text-[var(--muted)] sm:mt-8 sm:text-lg sm:leading-8">
-          I build responsive websites and provide practical IT support for setup, troubleshooting, maintenance, and security-aware workflows.
-        </p>
-        <div className="hero-actions mt-7 flex flex-wrap gap-3 sm:mt-8">
-          <a href="#contact" onClick={scrollToContact} className="btn">
-            <i className="bx bx-send" aria-hidden="true" />
-            Start a project
-          </a>
-          <Link to="/resume" className="btn btn-ghost">
-            <i className="bx bx-file" aria-hidden="true" />
-            View Resume
-          </Link>
+    <section id="home" className="hero-section shell">
+      <div className="issue-line">
+        <span>
+          <span className="live-dot" /> PERSONAL PORTFOLIO / SPECIAL EDITION
+        </span>
+        <span>
+          VOL. 01 <span className="issue-separator">•</span> CLASSIC SINCE ’62
+        </span>
+      </div>
+      <div className="hero-grid">
+        <div className="hero-copy">
+          <p className="hero-intro">
+            HEY, I'M ANIL PRAJAPATI <span>↗</span>
+          </p>
+          <h1>
+            YOUR FRIENDLY
+            <br />
+            NEIGHBORHOOD
+            <br />
+            <span className="red-text">WEB</span> DEVELOPER
+            <span className="red-text">.</span>
+          </h1>
+          <p className="hero-description">
+            Turning ideas into amazing digital experiences.
+            <br className="desktop-break" /> A little creativity. A lot of code.
+            Great responsibility.
+          </p>
+          <div className="hero-actions">
+            <a href="#work" className="btn">
+              Explore my work{" "}
+              <i className="bx bx-right-arrow-alt" aria-hidden="true" />
+            </a>
+            <a href="#contact" className="text-link">
+              Let's talk <span>↗</span>
+            </a>
+          </div>
+          <div className="hero-meta">
+            <SocialLinks />
+            <span>
+              WEB DEVELOPMENT
+              <br />
+              <b>& IT SUPPORT</b>
+            </span>
+          </div>
+        </div>
+        <div className="hero-art">
+          <div className="art-topline">
+            <SpiderMark />
+            <span>
+              THE AMAZING
+              <br />
+              <strong>SPIDER EDITION</strong>
+            </span>
+            <span className="art-issue">#01</span>
+          </div>
+          <div className="art-orbit" />
+          <div className="art-halftone" />
+          <svg
+            className="hero-web"
+            viewBox="0 0 500 600"
+            fill="none"
+            aria-hidden="true"
+          >
+            <g stroke="currentColor" strokeWidth="1">
+              <path d="M480 0 0 600M480 0 0 300M480 0 230 600M480 0 0 100M480 0 410 600M480 0 500 600" />
+              <path d="M405 47Q432 69 450 78Q469 70 483 72M330 94Q380 138 420 156Q460 140 487 144M255 141Q330 206 390 234Q450 210 490 216M180 188Q280 275 360 312Q440 280 493 288M105 235Q230 344 330 390Q430 350 496 360M30 282Q180 413 300 468Q420 420 499 432" />
+            </g>
+          </svg>
+          <img
+            className="classic-spider"
+            src="/assets/img/spiderman-classic.png"
+            alt="Classic Spider-Man in his red-and-blue suit swinging into action"
+            width="840"
+            height="1051"
+            fetchPriority="high"
+          />
+          <div className="comic-sticker">
+            WITH GREAT CODE
+            <br />
+            <strong>
+              COMES GREAT
+              <br />
+              RESPONSIBILITY.
+            </strong>
+          </div>
+          <div className="art-caption">
+            <span>CREATIVE BY DAY. CODER BY NIGHT.</span>
+            <span>✦</span>
+          </div>
         </div>
       </div>
-      <div className="reveal-item glass mx-auto w-full max-w-xs overflow-hidden rounded-lg p-3 sm:max-w-sm lg:max-w-none">
-        <img
-          src={site.image}
-          alt="Anil Prajapati"
-          width="499"
-          height="499"
-          decoding="async"
-          fetchPriority="high"
-          className="aspect-square w-full rounded-md object-cover"
-        />
+      <div className="hero-bottom">
+        <a href="#work">
+          <span className="scroll-icon">↓</span> SCROLL TO DISCOVER
+        </a>
+        <span>BUILT WITH PURPOSE. INSPIRED BY A HERO.</span>
       </div>
-      <SocialLinks theme={theme} className="hero-social reveal-item lg:flex-col lg:items-stretch" />
+    </section>
+  );
+}
+
+function Work({ onDetails }) {
+  const [filter, setFilter] = useState("All missions");
+  const categories = [
+    "All missions",
+    ...new Set(works.map((work) => work.category)),
+  ];
+  const visibleWorks = works.filter(
+    (work) => filter === "All missions" || work.category === filter,
+  );
+  return (
+    <section className="section-shell" id="work">
+      <SectionTitle
+        number="01"
+        eyebrow="THE MISSION ARCHIVE"
+        description="Real projects from my GitHub. Explore the code, interfaces, and ideas behind each mission."
+      >
+        SELECTED <span className="outline-text">MISSIONS.</span>
+      </SectionTitle>
+      <div className="project-filters" aria-label="Filter projects">
+        {categories.map((category) => (
+          <button
+            type="button"
+            key={category}
+            onClick={() => setFilter(category)}
+            aria-pressed={filter === category}
+            className={filter === category ? "active" : ""}
+          >
+            {category}
+            {category === "All missions" && (
+              <span>{String(works.length).padStart(2, "0")}</span>
+            )}
+          </button>
+        ))}
+      </div>
+      <div className="work-grid">
+        {visibleWorks.map((work) => (
+          <article key={work.id} className="project-card">
+            <button
+              className={`project-image project-image-${work.id}`}
+              onClick={() => onDetails(work.id)}
+              aria-label={`View ${work.title}`}
+            >
+              {work.image ? (
+                <img
+                  src={work.image}
+                  alt={work.alt}
+                  width="640"
+                  height="426"
+                  loading="lazy"
+                />
+              ) : (
+                <div className={`repo-cover repo-cover-${work.id}`}>
+                  <i className={`bx ${work.icon}`} aria-hidden="true" />
+                  <strong>{work.coverTitle}</strong>
+                  <span>{work.coverSubtitle}</span>
+                </div>
+              )}
+              <span className="project-number">
+                MISSION / 0{works.indexOf(work) + 1}
+              </span>
+              <span className="project-image-arrow">↗</span>
+              <span className="project-status">{work.status}</span>
+            </button>
+            <div className="project-info">
+              <p className="eyebrow">{work.tag}</p>
+              <div>
+                <h3>
+                  <button onClick={() => onDetails(work.id)}>
+                    {work.title}
+                  </button>
+                </h3>
+                <button
+                  className="project-open"
+                  aria-label={`Details for ${work.title}`}
+                  onClick={() => onDetails(work.id)}
+                >
+                  ↗
+                </button>
+              </div>
+              <p className="project-summary">{work.summary}</p>
+              <div className="project-links">
+                <a
+                  href={work.repository}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`View ${work.repoName} repository`}
+                >
+                  View code <span aria-hidden="true">↗</span>
+                </a>
+                {work.liveUrl && (
+                  <a href={work.liveUrl} target="_blank" rel="noreferrer">
+                    {work.liveLabel} <span aria-hidden="true">↗</span>
+                  </a>
+                )}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+      <a
+        className="text-link archive-link"
+        href="https://github.com/hello-anil?tab=repositories"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Explore all my GitHub repositories <span aria-hidden="true">↗</span>
+      </a>
     </section>
   );
 }
 
 function About() {
   return (
-    <section className="section-shell" id="about">
-      <SectionTitle>About</SectionTitle>
-      <div className="about-copy reveal-item mx-auto max-w-3xl text-center">
-        <h2 className="display-font text-3xl font-bold sm:text-4xl">I am Anil Prajapati</h2>
-        <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-[var(--muted)] sm:text-lg sm:leading-8">
-            I build clean interfaces, troubleshoot technical issues, and apply security basics to everyday digital work.
-        </p>
-        <ul className="about-list mt-8 grid gap-3 sm:mt-10 sm:grid-cols-3">
-          {['Responsive web layouts', 'Clear IT troubleshooting', 'Security-aware decisions'].map((item) => (
-            <li key={item} className="glass flex min-h-24 items-center justify-center gap-3 rounded-lg px-4 py-5 text-center font-semibold">
-              <i className="bx bx-check-circle text-xl text-[var(--accent)]" aria-hidden="true" />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
+    <section className="about-section" id="about">
+      <div className="section-shell about-grid">
+        <div className="portrait-panel">
+          <img
+            src="/assets/img/anil-spider-portrait.png"
+            alt="Anil Prajapati in a Spider-Man suit holding the mask"
+            width="1024"
+            height="1001"
+            loading="lazy"
+          />
+          <span className="portrait-label">THE PERSON BEHIND THE MASK</span>
+          <span className="portrait-stamp">
+            ANIL
+            <br />
+            PRAJAPATI ↗
+          </span>
+        </div>
+        <div>
+          <SectionTitle number="02" eyebrow="THE ORIGIN STORY">
+            A DEVELOPER.
+            <br />A PROBLEM SOLVER.
+            <br />
+            <span className="red-text">YOUR TECH ALLY.</span>
+          </SectionTitle>
+          <p className="body-copy">
+            I'm Anil Prajapati, a web developer and IT support specialist. I
+            build clean interfaces, untangle technical problems, and bring a
+            security-aware approach to everyday digital work.
+          </p>
+          <p className="body-copy">
+            Like my favorite neighborhood hero, I believe the small things
+            matter: a faster page, a clearer interface, or simply helping
+            someone get back on track.
+          </p>
+          <div className="about-values">
+            <span>
+              <i className="bx bx-check-circle" aria-hidden="true" /> Responsive
+              by design
+            </span>
+            <span>
+              <i className="bx bx-check-circle" aria-hidden="true" /> Built with
+              care
+            </span>
+            <span>
+              <i className="bx bx-check-circle" aria-hidden="true" /> Always
+              learning
+            </span>
+          </div>
+          <Link to="/resume" className="text-link">
+            Get to know me <span>↗</span>
+          </Link>
+        </div>
       </div>
     </section>
   );
@@ -81,13 +307,25 @@ function About() {
 function Services() {
   return (
     <section className="section-shell" id="services">
-      <SectionTitle>Services</SectionTitle>
-      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {services.map((service) => (
-          <article key={service.title} className="reveal-item glass rounded-lg p-6">
-            <i className={`bx ${service.icon} text-4xl text-[var(--accent)]`} aria-hidden="true" />
-            <h3 className="display-font mt-5 text-xl font-bold">{service.title}</h3>
-            <p className="mt-3 leading-7 text-[var(--muted)]">{service.text}</p>
+      <SectionTitle
+        number="03"
+        eyebrow="YOUR FRIENDLY NEIGHBORHOOD SERVICES"
+        description="A reliable helping hand for your next website or your everyday tech challenges."
+      >
+        MY <span className="outline-text">SUPERPOWERS.</span>
+      </SectionTitle>
+      <div className="service-grid">
+        {services.map((service, index) => (
+          <article className="service-card" key={service.title}>
+            <div className="service-top">
+              <i className={`bx ${service.icon}`} aria-hidden="true" />
+              <span>0{index + 1}</span>
+            </div>
+            <h3>{service.title}</h3>
+            <p>{service.text}</p>
+            <a href="#contact" className="text-link">
+              Let's make it happen <span>↗</span>
+            </a>
           </article>
         ))}
       </div>
@@ -97,60 +335,48 @@ function Services() {
 
 function Skills() {
   return (
-    <section className="section-shell" id="skills">
-      <SectionTitle>Skills</SectionTitle>
-      <div className="grid items-center gap-10 lg:grid-cols-[1fr_.95fr]">
-        <div className="reveal-item">
-          <h2 className="display-font text-3xl font-bold">Professional Skills</h2>
-          <p className="mt-3 leading-7 text-[var(--muted)]">Focused on practical front-end, support, and security fundamentals.</p>
-          <div className="mt-6 space-y-4">
-            {skills.map((skill) => (
-              <div key={skill.name} className="glass rounded-lg p-4">
-                <div className="mb-3 flex items-center justify-between gap-4">
-                  <div className="flex items-center gap-3 font-bold">
-                    <i className={`bx ${skill.icon} text-2xl text-[var(--accent)]`} aria-hidden="true" />
-                    <span>{skill.name}</span>
-                  </div>
-                  <span className="text-sm font-bold text-[var(--muted)]">{skill.percent}%</span>
-                </div>
-                <div className="h-2 overflow-hidden rounded-full bg-[var(--surface-muted)]">
-                  <div className="h-full rounded-full bg-[var(--accent)]" style={{ width: `${skill.percent}%` }} />
-                </div>
-              </div>
-            ))}
-          </div>
+    <section className="section-shell skills-section" id="skills">
+      <div>
+        <SectionTitle number="04" eyebrow="THE UTILITY BELT">
+          TOOLS OF
+          <br />
+          <span className="red-text">THE TRADE.</span>
+        </SectionTitle>
+        <p className="body-copy">
+          The fundamentals behind every mission. Practical front-end skills,
+          thoughtful design, and a steady dose of curiosity.
+        </p>
+        <div className="skill-tags">
+          <span>Responsive design</span>
+          <span>IT troubleshooting</span>
+          <span>Security awareness</span>
+          <span>Accessibility</span>
         </div>
-        <img
-          src="/assets/img/work3.jpg"
-          alt="Laptop workspace with development tools"
-          width="640"
-          height="426"
-          loading="lazy"
-          decoding="async"
-          className="reveal-item glass aspect-[3/2] w-full rounded-lg object-cover p-2"
-        />
       </div>
-    </section>
-  );
-}
-
-function Work({ onDetails }) {
-  return (
-    <section className="section-shell" id="work">
-      <SectionTitle>Work</SectionTitle>
-      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {works.map((work) => (
-          <article key={work.id} className="reveal-item glass group overflow-hidden rounded-lg">
-            <img src={work.image} alt={work.alt} width="640" height="426" loading="lazy" decoding="async" className="aspect-[3/2] w-full object-cover transition duration-300 group-hover:scale-105" />
-            <div className="p-4 sm:p-5">
-              <p className="text-xs font-extrabold uppercase tracking-[.18em] text-[var(--accent)]">{work.tag}</p>
-              <h3 className="display-font mt-3 text-xl font-bold">{work.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-[var(--muted)] sm:min-h-12">{work.summary}</p>
-              <button type="button" className="btn btn-ghost mt-5 px-4 py-2 text-sm" onClick={() => onDetails(work.id)}>
-                Details
-              </button>
+      <div className="skill-list">
+        {skills.map((skill) => (
+          <div className="skill-row" key={skill.name}>
+            <div>
+              <span>
+                <i className={`bx ${skill.icon}`} aria-hidden="true" />
+                {skill.name}
+              </span>
+              <span>
+                {skill.percent}
+                <small>%</small>
+              </span>
             </div>
-          </article>
+            <div
+              className="skill-track"
+              role="meter"
+              aria-label={`${skill.name} proficiency`}
+              aria-valuenow={skill.percent}
+              aria-valuemin={0}
+              aria-valuemax={100}
+            >
+              <div style={{ width: `${skill.percent}%` }} />
+            </div>
+          </div>
         ))}
       </div>
     </section>
@@ -160,32 +386,33 @@ function Work({ onDetails }) {
 function ResumePreview() {
   return (
     <section className="section-shell" id="resume">
-      <SectionTitle>Resume</SectionTitle>
-      <div className="grid gap-5 md:grid-cols-2">
-        <div className="reveal-item glass rounded-lg p-6">
-          <h3 className="display-font text-2xl font-bold">Experience Focus</h3>
-          <div className="mt-6 space-y-5">
-            {timeline.map((item) => (
-              <article key={item.title} className="border-l-2 border-[var(--accent)] pl-4">
-                <span className="text-xs font-extrabold uppercase tracking-[.18em] text-[var(--accent)]">{item.label}</span>
-                <h4 className="mt-1 font-bold">{item.title}</h4>
-                <p className="mt-1 text-sm leading-6 text-[var(--muted)]">{item.text}</p>
-              </article>
-            ))}
-          </div>
+      <SectionTitle number="05" eyebrow="CHARACTER DEVELOPMENT">
+        ALWAYS <span className="outline-text">LEVELING UP.</span>
+      </SectionTitle>
+      <div className="resume-grid">
+        <div className="timeline">
+          {timeline.map((item) => (
+            <article key={item.title}>
+              <p className="eyebrow">{item.label}</p>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
         </div>
-        <div className="reveal-item glass rounded-lg p-6">
-          <h3 className="display-font text-2xl font-bold">Certifications & Learning</h3>
-          <ul className="mt-6 space-y-3">
+        <div className="learning-panel">
+          <SpiderMark />
+          <p className="eyebrow">THE NEXT CHAPTER</p>
+          <h3>Learning never stops.</h3>
+          <ul>
             {learning.map((item) => (
-              <li key={item} className="flex gap-3 text-[var(--muted)]">
-                <i className="bx bx-certification mt-0.5 text-xl text-[var(--accent)]" aria-hidden="true" />
-                <span>{item}</span>
+              <li key={item}>
+                <span>↗</span>
+                {item}
               </li>
             ))}
           </ul>
-          <Link to="/resume" className="btn mt-6">
-            Open Full Resume
+          <Link className="btn btn-ghost" to="/resume">
+            Read the full résumé <span>↗</span>
           </Link>
         </div>
       </div>
@@ -194,79 +421,138 @@ function ResumePreview() {
 }
 
 function Contact() {
-  const [status, setStatus] = useState('');
-
+  const [status, setStatus] = useState("");
   const onSubmit = (event) => {
     event.preventDefault();
-    const form = event.currentTarget;
-    if (!form.checkValidity()) {
-      form.reportValidity();
+    const formData = new FormData(event.currentTarget);
+    const name = String(formData.get("name") || "").trim();
+    const email = String(formData.get("email") || "").trim();
+    const message = String(formData.get("message") || "").trim();
+    if (!name || !message) {
+      setStatus("Please add your name and a message before sending.");
       return;
     }
-
-    const formData = new FormData(form);
-    const name = String(formData.get('name') || '').trim();
-    const email = String(formData.get('email') || '').trim();
-    const message = String(formData.get('message') || '').trim();
-    const subject = encodeURIComponent(`Portfolio contact from ${name || 'website visitor'}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-
-    setStatus('Opening your email app. You can also use the direct email link.');
+    const subject = encodeURIComponent(`Portfolio contact from ${name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+    );
+    setStatus(
+      "Your email draft is ready in your email app. Send it there to complete your message.",
+    );
     window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
   };
-
   return (
-    <section className="section-shell" id="contact">
-      <SectionTitle>Contact</SectionTitle>
-      <form className="reveal-item glass mx-auto grid max-w-2xl gap-4 rounded-lg p-5" onSubmit={onSubmit}>
-        <label className="sr-only" htmlFor="name">
-          Name
-        </label>
-        <input id="name" type="text" name="name" placeholder="Name" autoComplete="name" required className="rounded-md border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-[var(--text)] outline-none focus:border-[var(--accent)]" />
-        <label className="sr-only" htmlFor="email">
-          Email
-        </label>
-        <input id="email" type="email" name="email" placeholder="Email" autoComplete="email" required className="rounded-md border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-[var(--text)] outline-none focus:border-[var(--accent)]" />
-        <label className="sr-only" htmlFor="message">
-          Message
-        </label>
-        <textarea id="message" name="message" rows="8" placeholder="Message" required className="resize-y rounded-md border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-[var(--text)] outline-none focus:border-[var(--accent)]" />
-        <button type="submit" className="btn justify-self-start">
-          <i className="bx bx-envelope" aria-hidden="true" />
-          Email Me
-        </button>
-        <p className="text-sm text-[var(--muted)]">
-          Direct email:{' '}
-          <a href={`mailto:${site.email}`} className="font-bold text-[var(--accent)]">
-            {site.email}
+    <section className="contact-section" id="contact">
+      <div className="section-shell contact-grid">
+        <div>
+          <p className="eyebrow">
+            <span>06 /</span> SEND A SIGNAL
+          </p>
+          <h2>
+            GOT AN IDEA?
+            <br />
+            <span>
+              LET'S MAKE
+              <br />
+              IT AMAZING.
+            </span>
+          </h2>
+          <p>
+            Have a project in mind or need a hand with tech?
+            <br />
+            My inbox is your friendly neighborhood away.
+          </p>
+          <a className="contact-email" href={`mailto:${site.email}`}>
+            {site.email} ↗
           </a>
-        </p>
-        <p className="min-h-6 text-sm text-[var(--muted)]" aria-live="polite">
-          {status}
-        </p>
-      </form>
+          <p className="contact-note">
+            <span className="live-dot" /> OPEN TO PROJECTS & COLLABORATIONS
+          </p>
+        </div>
+        <form className="contact-form" onSubmit={onSubmit}>
+          <div className="form-row">
+            <label htmlFor="name">
+              Your name
+              <input
+                id="name"
+                name="name"
+                autoComplete="name"
+                placeholder="Peter Parker"
+                required
+                maxLength="120"
+              />
+            </label>
+            <label htmlFor="email">
+              Your email
+              <input
+                id="email"
+                type="email"
+                name="email"
+                autoComplete="email"
+                placeholder="peter@example.com"
+                required
+              />
+            </label>
+          </div>
+          <label htmlFor="message">
+            What's the mission?
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              placeholder="Tell me about your project..."
+              required
+              maxLength="5000"
+            />
+          </label>
+          <button className="btn" type="submit">
+            Send a signal{" "}
+            <i className="bx bx-right-arrow-alt" aria-hidden="true" />
+          </button>
+          <p className="form-note">
+            Opens your email app with a ready-to-send draft.
+          </p>
+          <p role="status" className="form-status">
+            {status}
+          </p>
+        </form>
+      </div>
     </section>
   );
 }
 
 export function HomePage({ theme }) {
   const [activeProject, setActiveProject] = useState(null);
-  useSeo('home');
-
+  const closeProject = useCallback(() => setActiveProject(null), []);
+  const location = useLocation();
+  useSeo("home");
+  useEffect(() => {
+    if (location.hash)
+      document.getElementById(location.hash.slice(1))?.scrollIntoView();
+  }, [location.hash]);
   return (
     <>
       <CinematicEffects />
-      <Header />
-      <main>
-        <Home theme={theme} />
+      <Header theme={theme} />
+      <main id="main-content">
+        <Home />
+        <div className="edition-band-shell" aria-hidden="true">
+          <div className="edition-band">
+            <div>
+              CREATIVITY <SpiderMark /> CODE <SpiderMark /> GREAT RESPONSIBILITY{" "}
+              <SpiderMark /> CREATIVITY <SpiderMark /> CODE <SpiderMark /> GREAT
+              RESPONSIBILITY <SpiderMark />
+            </div>
+          </div>
+        </div>
+        <Work onDetails={setActiveProject} />
         <About />
         <Services />
         <Skills />
-        <Work onDetails={setActiveProject} />
         <ResumePreview />
         <Contact />
       </main>
-      <ProjectModal projectId={activeProject} onClose={() => setActiveProject(null)} />
+      <ProjectModal projectId={activeProject} onClose={closeProject} />
       <Footer />
     </>
   );
