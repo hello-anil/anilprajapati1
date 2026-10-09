@@ -268,32 +268,6 @@ ul {
 .skip-link:focus {
   top: 8px;
 }
-.issue-line {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 24px 0 28px;
-  font-size: 9px;
-  letter-spacing: 1.7px;
-  color: var(--muted);
-}
-.issue-line > span:first-child {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.live-dot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 4px #ef333d12;
-}
-.issue-separator {
-  margin: 0 12px;
-  color: var(--accent);
-}
 .hero-grid {
   display: grid;
   grid-template-columns: 1.18fr 1fr;
@@ -1237,11 +1211,6 @@ ul {
   .nav-menu a[aria-current]:after {
     display: none;
   }
-  .issue-line {
-    font-size: 7px;
-    letter-spacing: 1px;
-    padding: 22px 0;
-  }
   .hero-copy h1 {
     font-size: 7.1vw;
   }
@@ -1398,12 +1367,6 @@ ul {
 @media (max-width: 600px) {
   .header-actions {
     gap: 10px;
-  }
-  .issue-line > span:last-child {
-    display: none;
-  }
-  .issue-line {
-    padding: 22px 0 28px;
   }
   .hero-grid {
     grid-template-columns: 1fr;

@@ -34,14 +34,6 @@ function SectionTitle({ number, eyebrow, children, description }) {
 function Home() {
   return (
     <section id="home" className="hero-section shell">
-      <div className="issue-line">
-        <span>
-          <span className="live-dot" /> PERSONAL PORTFOLIO / SPECIAL EDITION
-        </span>
-        <span>
-          VOL. 01 <span className="issue-separator">•</span> CLASSIC SINCE ’62
-        </span>
-      </div>
       <div className="hero-grid">
         <div className="hero-copy">
           <p className="hero-intro">
