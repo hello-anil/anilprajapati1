@@ -184,7 +184,7 @@ ul {
   gap: 29px;
 }
 .nav-menu a {
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 500;
   color: var(--muted);
   position: relative;
@@ -1217,7 +1217,7 @@ ul {
   .nav-menu a {
     display: block;
     padding: 10px;
-    font-size: 14px;
+    font-size: 16px;
   }
   .nav-menu a[aria-current]:after {
     display: none;
