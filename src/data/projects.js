@@ -110,11 +110,10 @@ export const works = [
     category: "Desktop & mobile",
     tag: "Android | Windows | Bluetooth",
     status: "Downloads available",
-    icon: "bx-mouse-alt",
-    coverTitle: "AIR\nMOUSE",
-    coverSubtitle: "ANDROID PHONE. WINDOWS CONTROL.",
+    image: "/assets/projects/air-mouse-preview.png",
+    alt: "Air Mouse preview with the Android motion-control screen beside a Windows laptop",
     previewNote:
-      "Project title cover; Android APK and Windows receiver downloads are available in the repository.",
+      "AI-generated device mockup based on an actual Android app capture; the screen shows the receiver offline and motion control paused.",
     summary:
       "Turn an Android phone into a Windows mouse, touchpad, media remote, or game controller.",
     description:

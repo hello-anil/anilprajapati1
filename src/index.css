@@ -1711,6 +1711,10 @@ ul {
 .project-image img {
   object-position: top;
 }
+.project-image-air-mouse img {
+  aspect-ratio: 1690 / 931;
+  object-fit: contain;
+}
 .project-image-adlock-edge img {
   object-fit: contain;
   object-position: center;
