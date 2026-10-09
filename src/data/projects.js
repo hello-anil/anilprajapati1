@@ -1,5 +1,5 @@
 // Project descriptions and links verified against hello-anil's public repositories.
-// Preview images are bundled locally so the gallery does not depend on GitHub at runtime.
+// Preview images and title covers are local so the gallery does not depend on GitHub at runtime.
 export const works = [
   {
     id: "adlock-edge",
@@ -100,6 +100,33 @@ export const works = [
       "Administrator dashboard and eSewa, Khalti, and Stripe integration code.",
     ],
     repository: "https://github.com/hello-anil/FOOD-SEWA",
+    resume: true,
+  },
+  {
+    id: "air-mouse",
+    shortTitle: "Air Mouse",
+    repoName: "air-mouse-releases",
+    title: "Air Mouse — Android & Windows Remote",
+    category: "Desktop & mobile",
+    tag: "Android | Windows | Bluetooth",
+    status: "Downloads available",
+    icon: "bx-mouse-alt",
+    coverTitle: "AIR\nMOUSE",
+    coverSubtitle: "ANDROID PHONE. WINDOWS CONTROL.",
+    previewNote:
+      "Project title cover; Android APK and Windows receiver downloads are available in the repository.",
+    summary:
+      "Turn an Android phone into a Windows mouse, touchpad, media remote, or game controller.",
+    description:
+      "Air Mouse connects an Android phone to a Windows PC over Bluetooth for motion-based mouse control, touchpad input, media controls, presentation navigation, and PPSSPP controller input. The release repository provides the Android APK, standalone Windows receiver, and controller profile.",
+    bullets: [
+      "Bluetooth motion control and touchpad mode for Windows.",
+      "Media and presentation remotes, plus PPSSPP controller bindings.",
+      "Android APK and standalone Windows receiver downloads.",
+    ],
+    repository: "https://github.com/hello-anil/air-mouse-releases",
+    liveUrl: "https://github.com/hello-anil/air-mouse-releases/releases/latest",
+    liveLabel: "Download latest release",
     resume: true,
   },
 ];
