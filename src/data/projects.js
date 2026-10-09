@@ -76,30 +76,6 @@ export const works = [
     resume: true,
   },
   {
-    id: "adlock-privacy",
-    repoName: "adlock-privacy",
-    title: "AdLock — Privacy Documentation",
-    category: "Documentation",
-    tag: "Markdown | Privacy",
-    status: "Documentation",
-    icon: "bx-shield-quarter",
-    coverTitle: "PRIVACY\nBY DESIGN.",
-    coverSubtitle: "AdLock / Privacy documentation",
-    summary:
-      "Public documentation of AdLock’s local storage and privacy practices.",
-    description:
-      "The companion privacy-policy repository for AdLock. Its documentation explains local protection settings, blocking statistics, reputation data, fingerprint defenses, and storage removal.",
-    bullets: [
-      "Documents the extension’s no-telemetry policy.",
-      "Explains local settings, rules, and blocking statistics.",
-      "Describes retention, resets, and uninstall behavior.",
-    ],
-    repository: "https://github.com/hello-anil/adlock-privacy",
-    liveUrl:
-      "https://github.com/hello-anil/adlock-privacy/blob/main/PRIVACY.md",
-    liveLabel: "Read privacy policy",
-  },
-  {
     id: "food-sewa",
     repoName: "FOOD-SEWA",
     title: "FOOD-SEWA — Food Delivery",
