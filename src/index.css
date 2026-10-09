@@ -962,13 +962,6 @@ ul {
   color: var(--muted);
   line-height: 1.9;
 }
-.contact-email {
-  display: inline-block;
-  margin-top: 23px;
-  border-bottom: 1px solid var(--accent);
-  font-size: 17px;
-  padding-bottom: 6px;
-}
 .contact-grid > div > .contact-note {
   display: flex;
   align-items: center;
@@ -1368,9 +1361,6 @@ ul {
   .contact-grid h2 {
     font-size: 53px;
   }
-  .contact-email {
-    font-size: 14px;
-  }
   .contact-form .form-row {
     grid-template-columns: 1fr;
     gap: 0;
@@ -1596,9 +1586,6 @@ ul {
   }
   .contact-grid h2 {
     font-size: 65px;
-  }
-  .contact-email {
-    font-size: 17px;
   }
   .contact-form .form-row {
     grid-template-columns: 1fr 1fr;

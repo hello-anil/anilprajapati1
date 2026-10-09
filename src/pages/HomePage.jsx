@@ -462,9 +462,6 @@ function Contact() {
             <br />
             My inbox is your friendly neighborhood away.
           </p>
-          <a className="contact-email" href={`mailto:${site.email}`}>
-            {site.email} ↗
-          </a>
           <p className="contact-note">
             <span className="live-dot" /> OPEN TO PROJECTS & COLLABORATIONS
           </p>
