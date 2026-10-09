@@ -147,6 +147,9 @@ ul {
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
 }
+.site-header.is-scrolled {
+  z-index: 52;
+}
 .header-nav {
   height: 88px;
   display: flex;
@@ -374,6 +377,7 @@ ul {
 }
 .hero-art {
   position: relative;
+  z-index: 51;
   isolation: isolate;
   aspect-ratio: 0.91;
   border: 1px solid #f3efe526;

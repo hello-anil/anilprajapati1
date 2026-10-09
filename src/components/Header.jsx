@@ -7,10 +7,12 @@ import { ThemeToggle } from "./ThemeToggle.jsx";
 export function Header({ theme }) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeId, setActiveId] = useState("");
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   useEffect(() => {
     const onScroll = () => {
+      setIsScrolled(window.scrollY > 0);
       let next = "";
       navLinks.forEach(({ href }) => {
         const section = document.getElementById(href.slice(1));
@@ -38,7 +40,7 @@ export function Header({ theme }) {
     }
   };
   return (
-    <header className="site-header">
+    <header className={`site-header${isScrolled ? " is-scrolled" : ""}`}>
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>
