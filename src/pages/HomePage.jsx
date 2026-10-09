@@ -409,24 +409,37 @@ function ResumePreview() {
 
 function Contact() {
   const [status, setStatus] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const resetSubmission = () => {
+      setIsSubmitting(false);
+      setStatus("");
+    };
+    window.addEventListener("pageshow", resetSubmission);
+    return () => window.removeEventListener("pageshow", resetSubmission);
+  }, []);
+
   const onSubmit = (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const name = String(formData.get("name") || "").trim();
-    const email = String(formData.get("email") || "").trim();
-    const message = String(formData.get("message") || "").trim();
-    if (!name || !message) {
-      setStatus("Please add your name and a message before sending.");
+    if (isSubmitting) {
+      event.preventDefault();
       return;
     }
-    const subject = encodeURIComponent(`Portfolio contact from ${name}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
-    );
-    setStatus(
-      "Your email draft is ready in your email app. Send it there to complete your message.",
-    );
-    window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
+
+    const form = event.currentTarget;
+    for (const fieldName of ["name", "email", "message"]) {
+      const field = form.elements.namedItem(fieldName);
+      field.value = field.value.trim();
+    }
+    if (!form.reportValidity()) {
+      event.preventDefault();
+      setStatus("Please complete your name, email, and message before sending.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setStatus("Opening verification. Complete the check to send your message.");
+    // Let the browser POST to FormSubmit so its verification and error pages work.
   };
   return (
     <section className="contact-section" id="contact">
@@ -456,7 +469,33 @@ function Contact() {
             <span className="live-dot" /> OPEN TO PROJECTS & COLLABORATIONS
           </p>
         </div>
-        <form className="contact-form" onSubmit={onSubmit}>
+        <form
+          className="contact-form"
+          action={`https://formsubmit.co/${site.email}`}
+          method="POST"
+          onSubmit={onSubmit}
+          onInput={() => setStatus("")}
+          aria-busy={isSubmitting}
+        >
+          <input
+            type="hidden"
+            name="_next"
+            value={`${window.location.origin}/thanks?submitted=1`}
+          />
+          <input
+            type="hidden"
+            name="_subject"
+            value="New portfolio contact — Anil Prajapati"
+          />
+          <input type="hidden" name="_template" value="table" />
+          <input
+            type="text"
+            name="_honey"
+            className="contact-honeypot"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
           <div className="form-row">
             <label htmlFor="name">
               Your name
@@ -492,12 +531,12 @@ function Contact() {
               maxLength="5000"
             />
           </label>
-          <button className="btn" type="submit">
-            Send a signal{" "}
+          <button className="btn" type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Sending…" : "Send a signal"}{" "}
             <i className="bx bx-right-arrow-alt" aria-hidden="true" />
           </button>
           <p className="form-note">
-            Opens your email app with a ready-to-send draft.
+            Complete the verification check to send your message.
           </p>
           <p role="status" className="form-status">
             {status}

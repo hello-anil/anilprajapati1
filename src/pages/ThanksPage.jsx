@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Header } from "../components/Header.jsx";
 import { Footer } from "../components/Footer.jsx";
 import { SpiderMark } from "../components/SpiderMark.jsx";
@@ -6,6 +6,8 @@ import { useSeo } from "../hooks/useSeo.js";
 
 export function ThanksPage({ theme }) {
   useSeo("thanks");
+  const [searchParams] = useSearchParams();
+  const submitted = searchParams.get("submitted") === "1";
 
   return (
     <>
@@ -17,9 +19,9 @@ export function ThanksPage({ theme }) {
             THANKS FOR THE SIGNAL.
           </h1>
           <p className="mt-4 leading-7 text-[var(--muted)]">
-            Your next great mission starts with a conversation. If you used the
-            contact form, send the draft from your email app to complete your
-            message.
+            {submitted
+              ? "Your message has been submitted. Thanks for reaching out — I’ll reply as soon as I can."
+              : "Your next great mission starts with a conversation. Send me a message through the portfolio contact form."}
           </p>
           <Link to="/" className="btn mt-6">
             Back to Portfolio
